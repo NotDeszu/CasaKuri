@@ -35,7 +35,7 @@ $sql = "INSERT INTO usuarios (usu_nombre, usu_apellidoP, usu_apellidoM, usu_tele
 
 // ejecutamos el statement de sql
 if (mysqli_query($conn, $sql)) {
-    header("Location: index.php");
+    header("Location: login3.php");
     exit();
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
