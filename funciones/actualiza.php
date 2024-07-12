@@ -8,7 +8,7 @@ $precio = $conn->real_escape_string($_POST['precio']);
 $categoria = $conn->real_escape_string($_POST['categorias']);
 $descripcion = $conn->real_escape_string($_POST['descripcion']);
 
-
+//query sql
 $sql = "UPDATE productos  SET pro_Producto = '$producto', pro_precio = '$precio', pro_decripcion = '$descripcion', cat_id = '$categoria'  WHERE pro_id='$id'";
 
 
@@ -44,4 +44,4 @@ if ($conn->query($sql)) {
 }
 
 
-header('Location: ../index.php');
+header('Location: ../indexAdmin.php');

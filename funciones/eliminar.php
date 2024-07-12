@@ -23,5 +23,5 @@ if ($conn->query($sql)) {
     $_SESSION['msg'] = "Error al eliminar Registro";
 }
 
-header('Location: ../index.php');
+header('Location: ../indexAdmin.php');
 ?>
