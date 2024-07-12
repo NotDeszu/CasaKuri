@@ -1,5 +1,16 @@
 <?php
 session_start();
+if(empty($_SESSION["usu_id"])){
+    header("location: Front/ogani/login3.php");
+    exit();
+}
+
+if($_SESSION["rol_id"] != 1){
+    header("location: Front/ogani/index.php");
+    exit();
+}
+?>
+<?php
 require "BD/conexion.php";
 ?>
 
