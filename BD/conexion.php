@@ -2,7 +2,7 @@
 $servidor= "localhost";
 $usuario="root";
 $password="";
-$basedatos="casakuri";   
+$basedatos="nuevacasakuri";   
 
 $conn =mysqli_connect($servidor, $usuario,$password,$basedatos);
 

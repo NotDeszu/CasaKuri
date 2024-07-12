@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/registrousuario.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 left-section">
+                <h2 class="text-center">Informacion General</h2>
+                <form action="RegistroBack.php" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="nombre" name="usu_nombre" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="apellidoPaterno" name="usu_apellidop" placeholder="Apellido Paterno" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="apellidoMaterno" name="usu_apellidom"placeholder="Apellido Materno" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="usu_email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="pass" name="usu_pass" placeholder="Password" required>
+                    </div>
+                <!--aqui habia un end de form-->
+                <div class="text-center mt-5">
+                    <img src="../imgP/pre rm ck - Copy.PNG" alt="Casa Kuri" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-6 right-section">
+                <h2 class="text-center">Detalles de Contacto</h2>
+               <!-- <form action="regPru.php" method="post"> -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="direccion" name="usu_direccion" placeholder="Direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="telefono" name="usu_telefono" placeholder="Telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="codigoP" name="usu_cp" placeholder="Codigo P" required>
+                    </div>
+                    <label for="estado">Estado <br></label>
+                    <div class="form-group">
+                        <select class="form-control nice-select" id="estado" name="est_id" required>
+                            <option value="1">Queretaro</option>
+                            <option value="2">Tamaulipas</option>
+                            <option value="3">Monterrey</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" >
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('select').niceSelect();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+body {
+    width: 100%;
+    height: 100%;
+    --s: 84px;
+    --c1: #79994f;
+    --c2: #717246;
+    --c3: #3b3b06;
+  
+    --_g: 0 120deg, #0000 0;
+    background: conic-gradient(
+        from 0deg at calc(500% / 6) calc(100% / 3),
+        var(--c3) var(--_g)
+      ),
+      conic-gradient(
+        from -120deg at calc(100% / 6) calc(100% / 3),
+        var(--c2) var(--_g)
+      ),
+      conic-gradient(
+        from 120deg at calc(100% / 3) calc(500% / 6),
+        var(--c1) var(--_g)
+      ),
+      conic-gradient(
+        from 120deg at calc(200% / 3) calc(500% / 6),
+        var(--c1) var(--_g)
+      ),
+      conic-gradient(
+        from -180deg at calc(100% / 3) 50%,
+        var(--c2) 60deg,
+        var(--c1) var(--_g)
+      ),
+      conic-gradient(
+        from 60deg at calc(200% / 3) 50%,
+        var(--c1) 60deg,
+        var(--c3) var(--_g)
+      ),
+      conic-gradient(
+        from -60deg at 50% calc(100% / 3),
+        var(--c1) 120deg,
+        var(--c2) 0 240deg,
+        var(--c3) 0
+      );
+    background-size: calc(var(--s) * 1.732) var(--s);
+}
+
+.left-section {
+    background-color: #ffffff;
+    padding: 30px;
+    border-right: 2px solid #7fad39;
+}
+
+.right-section {
+    background-color: #7fad39;
+    padding: 30px;
+    color: #ffffff;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #7fad39;
+    border: 2px solid #7fad39;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #7fad39;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+}

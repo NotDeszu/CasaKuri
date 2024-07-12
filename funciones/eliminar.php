@@ -4,7 +4,7 @@ require "../BD/conexion.php";
 
 $id = $conn->real_escape_string($_POST['id']);
 
-$sql = "DELETE FROM  productos WHERE pro_id='$id'";
+$sql = "UPDATE productos SET pro_status = 0 WHERE pro_id='$id'";
 
 
 if ($conn->query($sql)) {

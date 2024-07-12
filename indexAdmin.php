@@ -1,5 +1,17 @@
 <?php
 session_start();
+if(empty($_SESSION["usu_id"])){
+    header("location: Front/ogani/login3.php");
+    exit();
+}
+
+if($_SESSION["rol_id"] != 1){
+    header("location: Front/ogani/index.php");
+    exit();
+}
+?>
+
+<?php
 require "BD/conexion.php";
 ?>
 <?php
@@ -9,8 +21,6 @@ $productos = $conn->query($sqlProductos);
 
 $dir = "funciones/imagenes/";
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +34,8 @@ $dir = "funciones/imagenes/";
 </head>
 
 <body>
-
+<?php
+        include("menus/menuAdmin.php") ?>
     <div class="container py-3">
         <h2 class="text-center">Productos</h2>
 
@@ -39,6 +50,7 @@ $dir = "funciones/imagenes/";
             unset($_SESSION['msg']);
         }
         ?>
+
         <div class="row justify-content-end">
             <div class="col-auto">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProdModal">

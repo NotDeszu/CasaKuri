@@ -8,7 +8,7 @@ $categoria = $conn->real_escape_string($_POST['categoria']);
 $descripcion = $conn->real_escape_string($_POST['descripcion']);
 
 
-$sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_decripcion, cat_id) VALUES ('$producto','$precio','$descripcion','$categoria')";
+$sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_decripcion,pro_status, cat_id) VALUES ('$producto','$precio','$descripcion', 1,'$categoria')";
 
 
 if ($conn->query($sql)) {

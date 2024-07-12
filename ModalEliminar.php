@@ -7,6 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                La baja del producto es logica.
                 ¿Desea Eliminar el Registro?
             </div>
 
@@ -16,7 +17,6 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
-
             </div>
         </div>
     </div>
