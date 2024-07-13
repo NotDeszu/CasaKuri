@@ -43,7 +43,6 @@ session_start();
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -58,36 +57,50 @@ session_start();
                 </ul>
             </div> -->
             <div class="header__top__right__auth">
-                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> Salir/Log</a>
+                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> 
+                <?php
+                    if(empty($_SESSION["usu_id"])){
+                        echo "Iniciar Sesion";
+                    }else{
+                        echo "Cerrar Sesion";
+                    }
+                ?>
+                </a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.php">Homee</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
+                <li class="active"><a href="./index.php">Home</a></li>
+                <li><a href="./shop-grid.php">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
+                        <li><a href="./shop-details.php">Shop Details</a></li>
+                        <li><a href="./shoping-cart.php">Shoping Cart</a></li>
+                        <li><a href="./checkout.php">Check Out</a></li>
+                        <li><a href="./blog-details.php">Blog Details</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./blog.php">Blog</a></li>
+                <li><a href="./contact.php">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="header__top__right__social">
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> felipe@cisco.com</li>
-                <li>Free Shipping for all Order of $99</li>
+                <li><i class="fa fa-envelope"></i> 
+                <?php
+                    if(empty($_SESSION["usu_id"])){
+                        echo " ";
+                    }else{
+                        echo $_SESSION["usu_email"];
+                    }
+                ?>
+                </li>
+                <li>Envios a toda la Republica Mexicana</li>
             </ul>
         </div>
     </div>
@@ -120,15 +133,6 @@ session_start();
                                 <a href="https://www.facebook.com/casakuri"><i class="fa fa-facebook"></i></a>
                                 <a href="https://www.instagram.com/casa.kuri/"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <!-- <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div> -->
                             <div class="header__top__right__auth">
                                 <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> 
                                     <?php
@@ -145,6 +149,7 @@ session_start();
                 </div>
             </div>
         </div>
+        <!-- Aqui termina el header top -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -156,24 +161,24 @@ session_start();
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="./index.php">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
+                            <li><a href="./shop-grid.php">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="./shop-details.php">Shop Details</a></li>
+                                    <li><a href="./shoping-cart.php">Shoping Cart</a></li>
+                                    <li><a href="./checkout.php">Check Out</a></li>
+                                    <li><a href="./blog-details.php">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="./blog.php">Blog</a></li>
+                            <li><a href="./contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="shoping-cart.html"><i class="fa fa-shopping-cart"></i> <span>1</span></a></li>
+                            <li><a href="shoping-cart.php"><i class="fa fa-shopping-cart"></i> <span>1</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
@@ -239,7 +244,7 @@ session_start();
                             <span>Papeleria</span>
                             <h2>Casa <br />kuri </h2>
                             <p>Los mejores productos de papeleria</p>
-                            <a href="shop-grid.html" class="primary-btn">Comprar ahora</a>
+                            <a href="shop-grid.php" class="primary-btn">Comprar ahora</a>
                         </div>
                     </div>
                     <!--quiero poner otra cosa aqui-->
@@ -436,12 +441,12 @@ session_start();
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                        <img src="img/banner/Banner1.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                        <img src="img/banner/Banner2.png" alt="">
                     </div>
                 </div>
             </div>
