@@ -7,8 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="funciones/guardar.php" method="POST" enctype="multipart/form-data">
-
+                <form action="Front/ogani/nuevoProducto.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id='id' name="id">
                     <!-- Producto -->
                     <div class="mb-3">
                         <label for="producto" class="form-label">Producto</label>
@@ -39,7 +39,7 @@
                     <!-- imagenes -->
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
-                        <input type="file" id="imagen" name="imagen" class="form-control" accept="image/jpeg">
+                        <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
                     </div>
 
                     <div class="">

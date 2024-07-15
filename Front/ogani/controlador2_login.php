@@ -27,7 +27,7 @@ if (!empty($_POST["btningresar"])) {
             echo "<div class='alert alert-danger'>Acceso Denegado</div>";
         }
     } else {
-        echo "Llena los campos";
+        echo "<div class='alert alert-danger'>LLena los campos</div>";
     }
 }
 ?>

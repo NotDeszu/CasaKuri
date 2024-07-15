@@ -1,7 +1,42 @@
 <?php
 session_start();
-?>
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once '../../BD/conexion.php';
 
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Database connection successful.<br>";
+}
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+?>
+<?php
+function getProductDetails($proId) {
+    global $conn;
+    $sql = "SELECT p.pro_id, p.pro_nombre, p.pro_precio, i.inv_existencia 
+            FROM productos p
+            JOIN inventario i ON p.pro_id = i.pro_id
+            WHERE p.pro_id = ?";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param("i", $proId);
+    if (!$stmt->execute()) {
+        die("Execute failed: " . $stmt->error);
+    }
+    $result = $stmt->get_result();
+    if (!$result) {
+        die("Get result failed: " . $stmt->error);
+    }
+    return $result->fetch_assoc();
+}
+//$total = 0;
+?>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -242,7 +277,8 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="shoping__cart__table">
+                <div class="shoping__cart__table">
+                    <?php if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
                         <table>
                             <thead>
                                 <tr>
@@ -254,75 +290,48 @@ session_start();
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Producto 1</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $55.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
+                                <?php foreach ($_SESSION['cart'] as $proId => $quantity): 
+                                    $product = getProductDetails($proId);
+                                    if($product): 
+                                        $subtotal = $product['pro_precio'] * $quantity;
+                                        $total += $subtotal;
+                                ?>
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="img/cart/<?php echo $product['pro_id']; ?>.jpg" alt="">
+                                            <h5><?php echo $product['pro_nombre']; ?></h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            $<?php echo number_format($product['pro_precio'], 2); ?>
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="number" value="<?php echo $quantity; ?>" 
+                                                        min="1" max="<?php echo $product['inv_existencia']; ?>" 
+                                                        data-pro-id="<?php echo $product['pro_id']; ?>" 
+                                                        data-price="<?php echo $product['pro_precio']; ?>"
+                                                        class="quantity-input">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $110.00
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Producto 2</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Producto 3</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            $<span class="item-total"><?php echo number_format($subtotal, 2); ?></span>
+                                        </td>
+                                        <td class="shoping__cart__item__close">
+                                            <span class="icon_close" data-pro-id="<?php echo $product['pro_id']; ?>"></span>
+                                        </td>
+                                    </tr>
+                                <?php 
+                                    endif;
+                                endforeach; ?>
                             </tbody>
                         </table>
+                    <?php else: ?>
+                        <p>Your cart is empty</p>
+                    <?php endif; ?>
                     </div>
+
                 </div>
             </div>
             <div class="row">
@@ -345,14 +354,14 @@ session_start();
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="shoping__checkout">
-                        <h5>Cart Total</h5>
-                        <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
-                        </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
-                    </div>
+                <div class="shoping__checkout">
+                    <h5>Cart Total</h5>
+                    <ul>
+                        <li>Subtotal <span id="subtotal">$<?php echo number_format($total, 2); ?></span></li>
+                        <li>Total <span id="total">$<?php echo number_format($total, 2); ?></span></li>
+                    </ul>
+                    <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                </div>
                 </div>
             </div>
         </div>
@@ -407,6 +416,8 @@ session_start();
                         <div class="footer__widget__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
                         </div>
                     </div>
                 </div>
@@ -430,7 +441,73 @@ session_start();
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    // Update quantity
+    $('.quantity-input').on('change', function() {
+        var proId = $(this).data('pro-id');
+        var quantity = $(this).val();
+        var price = $(this).data('price');
+        var maxStock = $(this).attr('max');
 
+        if (quantity > maxStock) {
+            alert('Cannot exceed available stock');
+            $(this).val(maxStock);
+            quantity = maxStock;
+        }
+
+        $.ajax({
+            url: 'update-carrito.php',
+            method: 'POST',
+            data: { pro_id: proId, quantity: quantity },
+            success: function(response) {
+                if (response === 'success') {
+                    updateItemTotal(proId, quantity, price);
+                    updateCartTotal();
+                } else {
+                    console.log('Error updating cart:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+            }
+        });
+    });
+
+    // Remove item
+    $('.icon_close').on('click', function() {
+        var proId = $(this).data('pro-id');
+
+        $.ajax({
+            url: 'borrar-carrito.php',
+            method: 'POST',
+            data: { pro_id: proId },
+            success: function(response) {
+                if (response === 'success') {
+                    location.reload();
+                }
+            }
+        });
+    });
+
+    function updateItemTotal(proId, quantity, price) {
+        var total = quantity * price;
+        $('input[data-pro-id="' + proId + '"]').closest('tr').find('.item-total').text(total.toFixed(2));
+    }
+
+    function updateCartTotal() {
+        var total = 0;
+        $('.item-total').each(function() {
+            total += parseFloat($(this).text());
+        });
+        $('#subtotal').text('$' + total.toFixed(2));
+        $('#total').text('$' + total.toFixed(2));
+    }
+});
+
+</script>
+</script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 
-                <form action="funciones/actualiza.php" method="POST" enctype="multipart/form-data">
+                <form action="Front/ogani/actualizarProducto.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id='id' name="id">
                     <!-- Producto -->
                     <div class="mb-3">
@@ -49,7 +49,7 @@
 
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
-                        <input type="file" id="imagen" name="imagen" class="form-control" accept="image/jpeg">
+                        <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
                     </div>
 
                     <div class="">

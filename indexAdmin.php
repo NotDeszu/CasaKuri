@@ -15,7 +15,7 @@ if($_SESSION["rol_id"] != 1){
 require "BD/conexion.php";
 ?>
 <?php
-$sqlProductos = "SELECT  pro_id, pro_producto, pro_precio, pro_decripcion, cat_nombre, productos.cat_id  from productos inner join categoria on 
+$sqlProductos = "SELECT  pro_id, pro_producto, pro_precio, pro_decripcion, pro_status, cat_nombre, productos.cat_id  from productos inner join categoria on 
 categoria.cat_id = productos.cat_id order by pro_id";
 $productos = $conn->query($sqlProductos);
 
@@ -83,20 +83,37 @@ $dir = "funciones/imagenes/";
             <tbody>
                 <?php
                 while ($row_productos = $productos->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?= $row_productos['pro_id']; ?> </td>
-                        <td><?= $row_productos['pro_producto']; ?> </td>
-                        <td>$<?= $row_productos['pro_precio']; ?> </td>
-                        <td><?= $row_productos['cat_nombre']; ?> </td>
-                        <td><?= $row_productos['pro_decripcion']; ?> </td>
-                        <td><img src="<?= $dir . $row_productos['pro_id'] . 'jpg?n=' . time(); ?>" width="100px" alt=""></td>
-                        <td>
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
-                            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#EliminarModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-trash-fill"></i></a>
-                        </td>
+                    <?php
+                        if($row_productos["pro_status"]==1){ ?> 
+                            <tr>
+                                <td><?= $row_productos['pro_id']; ?> </td>
+                                <td><?= $row_productos['pro_producto']; ?> </td>
+                                <td>$<?= $row_productos['pro_precio']; ?> </td>
+                                <td><?= $row_productos['cat_nombre']; ?> </td>
+                                <td><?= $row_productos['pro_decripcion']; ?> </td>
+                                <td><img src="<?= $dir . $row_productos['pro_id'] . 'jpg?n=' . time(); ?>" width="100px" alt=""></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
+                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#EliminarModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-trash-fill"></i></a>
+                                </td>
 
-                    </tr>
-                <?php }
+                            </tr>
+                    <?php   }elseif($row_productos["pro_status"]==0){ ?>
+                        <tr class = "table-danger">
+                                <td><?= $row_productos['pro_id']; ?> </td>
+                                <td><?= $row_productos['pro_producto']; ?> </td>
+                                <td>$<?= $row_productos['pro_precio']; ?> </td>
+                                <td><?= $row_productos['cat_nombre']; ?> </td>
+                                <td><?= $row_productos['pro_decripcion']; ?> </td>
+                                <td><img src="<?= $dir . $row_productos['pro_id'] . 'jpg?n=' . time(); ?>" width="100px" alt=""></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
+                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#EliminarModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-trash-fill"></i></a>
+                                </td>
+                            </tr>
+                        <?php    } ?>
+                <?php
+                }
                 ?>
 
             </tbody>
