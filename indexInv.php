@@ -23,6 +23,8 @@ JOIN productos ON inventario.pro_id=productos.pro_id
 JOIN sucursal ON inventario.suc_id=sucursal.suc_id
 where pro_status=1";
 $inventario = $conn->query($sqlInventario);
+
+//comentario, prueba de subida de archivo a github
 ?>
 
 
