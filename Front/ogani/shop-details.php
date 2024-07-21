@@ -1,5 +1,20 @@
 <?php
 session_start();
+include("../../BD/conexion.php");
+
+$product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+$sql = "SELECT * FROM productos WHERE pro_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$product = $result->fetch_assoc();
+
+if (!$product) {
+    header("Location: shop-grid.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -252,8 +267,8 @@ session_start();
                         <h2>Pagina de Producto</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.php">Home</a>
-                            <a href="./index.php">Vegetables</a>
-                            <span>Nombre Producto</span>
+                            <a href="./shop-grid.php">shop</a>
+                            <span><?php echo htmlspecialchars($product['pro_Producto']); ?></span>
                         </div>
                     </div>
                 </div>
@@ -270,9 +285,9 @@ session_start();
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="img/product/coloresbic.png" alt="">
+                                src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="">
                         </div>
-                        <div class="product__details__pic__slider owl-carousel">
+                        <!-- <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="img/product/details/product-details-2.jpg"
                                 src="img/product/details/thumb-1.jpg" alt="">
                             <img data-imgbigurl="img/product/details/product-details-3.jpg"
@@ -281,24 +296,24 @@ session_start();
                                 src="img/product/details/thumb-3.jpg" alt="">
                             <img data-imgbigurl="img/product/details/product-details-4.jpg"
                                 src="img/product/details/thumb-4.jpg" alt="">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>Nombre Producto</h3>
-                        <div class="product__details__rating">
+                        <h3><?php echo htmlspecialchars($product['pro_Producto']); ?></h3>
+                        <!-- <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
-                        </div>
-                        <div class="product__details__price">$50.00</div>
-                        <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                        </div> -->
+                        <div class="product__details__price">$<?php echo number_format($product['pro_precio'], 2); ?></div>
+
+                        <p><?php echo htmlspecialchars($product['pro_decripcion']); ?></p>
+
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -307,7 +322,6 @@ session_start();
                             </div>
                         </div>
                         <a href="#" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>

@@ -1,9 +1,17 @@
 <?php
 session_start();
 require_once '../../BD/conexion.php';
+
 require './carrito/prueba add pr/functions.php';
 
-$products= getActiveProducts();
+$sucursal_id = isset($_GET['sucursal']) ? intval($_GET['sucursal']) : 0;
+$categoria_id = isset($_GET['categoria']) ? intval($_GET['categoria']) : 0;
+
+$products = getFilteredProducts($sucursal_id, $categoria_id);
+
+// Debug: Print the number of products found 
+echo "<!-- Debug: Number of products found: " . count($products) . " -->";
+
 ?>
 
 <!DOCTYPE html>
@@ -186,7 +194,7 @@ $products= getActiveProducts();
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero hero-normal">
+    <!-- <section class="hero hero-normal">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -224,7 +232,7 @@ $products= getActiveProducts();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
@@ -252,92 +260,62 @@ $products= getActiveProducts();
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>Sucursal Queretaro</h4>
+                            <h4>Categorias</h4>
                             <ul>
-                                <li><a href="#">Productos Escolares</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
+                            <li><a>Plumas</a></li>
+                            <li><a>Cuadernos</a></li>
+                            <li><a>Calculadoras</a></li>
+                            <li><a>Sacapuntas</a></li>
+                            <li><a>Marcadores</a></li>
+                            <li><a>Carpetas</a></li>
+                            <li><a>Resistol</a></li>
+                            <li><a>Gomas de Borrar</a></li>
+                            <li><a>Reglas</a></li>
+                            <li><a>Tijeras</a></li>
                             </ul>
                         </div>
+                        <!-- ctf -->
                         <div class="sidebar__item">
                             <div class="latest-product__text">
-                                <h4>Ultimos</h4>
-                                <h4>Productos</h4>
-                                <div class="latest-product__slider owl-carousel">
-                                    <div class="latest-prdouct__slider__item">
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-1.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
+                            <h4>Sucursales <br />Casa Kuri</h4>
+                            <div class="blog__sidebar__recent">
+                                <a class="blog__sidebar__recent__item">
+                                    <div class="blog__sidebar__recent__item__pic">
+                                        <img src="img/blog/sidebar/qro2.jpg" alt="">
                                     </div>
-                                    <div class="latest-prdouct__slider__item">
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-1.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
+                                    <div class="blog__sidebar__recent__item__text">
+                                        <h6>Sucursal<br /> Queretaro</h6>
+                                        <span>MAR 05, 2019</span>
                                     </div>
+                                </a>
+                                <a class="blog__sidebar__recent__item">
+                                    <div class="blog__sidebar__recent__item__pic">
+                                        <img src="img/blog/sidebar/gdlj2.jpg" alt="">
+                                    </div>
+                                    <div class="blog__sidebar__recent__item__text">
+                                        <h6>Sucursal<br /> Guadalajara</h6>
+                                        <span>MAR 05, 2019</span>
+                                    </div>
+                                </a>
+                                <a class="blog__sidebar__recent__item">
+                                    <div class="blog__sidebar__recent__item__pic">
+                                        <img src="img/blog/sidebar/mtry2.jpg" alt="">
+                                    </div>
+                                    <div class="blog__sidebar__recent__item__text">
+                                        <h6>Sucursal<br />Monterrey</h6>
+                                        <span>MAR 05, 2019</span>
+                                    </div>
+                                </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- ctf -->
                 <div class="col-lg-9 col-md-7">
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
-                            <h2>Productos Papeleria Kuri</h2>
+                            <h2>Ultimos productos agregados</h2>
                         </div>
                         <div class="row">
                             <div class="product__discount__slider owl-carousel">
@@ -345,7 +323,7 @@ $products= getActiveProducts();
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/gomapelikan.png">
-                                            <div class="product__discount__percent">-20%</div>
+                                            <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
                                                 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
@@ -354,7 +332,7 @@ $products= getActiveProducts();
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
+                                            <h5><a href="#">Goma</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -363,7 +341,7 @@ $products= getActiveProducts();
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/libretarayapelikan.png">
-                                            <div class="product__discount__percent">-20%</div>
+                                            <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
                                                 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
@@ -372,7 +350,7 @@ $products= getActiveProducts();
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Vegetables</span>
-                                            <h5><a href="#">Vegetables’package</a></h5>
+                                            <h5><a href="#">Libreta</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -381,7 +359,7 @@ $products= getActiveProducts();
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/marcatextosamarillo.png">
-                                            <div class="product__discount__percent">-20%</div>
+                                            <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
                                                 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
@@ -390,7 +368,7 @@ $products= getActiveProducts();
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Dried Fruit</span>
-                                            <h5><a href="#">Mixed Fruitss</a></h5>
+                                            <h5><a href="#">Marcador</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -399,7 +377,7 @@ $products= getActiveProducts();
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/mochila1.png">
-                                            <div class="product__discount__percent">-20%</div>
+                                            <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
                                                 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
@@ -408,7 +386,7 @@ $products= getActiveProducts();
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
+                                            <h5><a href="#">Mochila</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -417,7 +395,7 @@ $products= getActiveProducts();
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/pegamento850.png">
-                                            <div class="product__discount__percent">-20%</div>
+                                            <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
                                                 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
@@ -426,7 +404,7 @@ $products= getActiveProducts();
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
+                                            <h5><a href="#">Resistol</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -435,16 +413,16 @@ $products= getActiveProducts();
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="img/product/discount/tijerasbarrilito.png">
-                                            <div class="product__discount__percent">-20%</div>
+                                            <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
                                                 
-                                                <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
+                                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>Dried Fruit</span>
-                                            <h5><a href="#">Raisin’n’nuts</a></h5>
+                                            <h5><a href="#">Tijeras</a></h5>
                                             <div class="product__item__price">$30.00 <span>$36.00</span></div>
                                         </div>
                                     </div>
@@ -452,44 +430,66 @@ $products= getActiveProducts();
                             </div>
                         </div>
                     </div>
-                    <div class="filter__item">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
+                    <div class="section-title product__discount__title">
+                    <h2>Productos Papeleria Kuri</h2>
+                    </div>
+                    <!-- empieza filtros de busqueda -->
+                    <form method="GET" action="">
+                        <div class="filter__item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="filter__sort">
+                                        <span>Sucursal:</span>
+                                        <select name="sucursal">
+                                            <option value="0">Todos</option>
+                                            <?php
+                                            $sucursales = getSucursales();
+                                            foreach ($sucursales as $sucursal) {
+                                                $selected = ($_GET['sucursal'] == $sucursal['suc_id']) ? 'selected' : '';
+                                                echo "<option value='".$sucursal['suc_id']."' $selected>".$sucursal['suc_nombre']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="filter__sort">
+                                        <span>Categoria:</span>
+                                        <select name="categoria">
+                                            <option value="0">Todos</option>
+                                            <?php
+                                            $categorias = getCategorias();
+                                            foreach ($categorias as $categoria) {
+                                                $selected = ($_GET['categoria'] == $categoria['cat_id']) ? 'selected' : '';
+                                                echo "<option value='".$categoria['cat_id']."' $selected>".$categoria['cat_nombre']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
-                                <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="filter__found">
+                                        <button type="submit" class="site-btn">Filtrar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form> 
                 <!-- Aqui es la parte dinamica que agrega productos  -->
-                <!-- <form id="formulario" name="formulario" method="post" action="carrito.php"> -->
-                    <div class="row">
+                <div class="row">
+                    <?php if (empty($products)): ?>
+                        <p>No se encontraron productos que coincidan con los filtros seleccionados.</p>
+                    <?php else: ?>
                         <?php foreach ($products as $product): ?>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic">
-                                        <img src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_imagen']); ?>">
+                                        <img src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_Producto']); ?>">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="shop-details.php?id=<?php echo $product['pro_id']; ?>"><i class="fa fa-eye"></i></a></li>
                                             <li><a href="#" class="add-to-cart" data-pro-id="<?php echo $product['pro_id']; ?>">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a></li>
-                                            
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
@@ -499,8 +499,8 @@ $products= getActiveProducts();
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    </div>
-                <!-- </form> -->
+                    <?php endif; ?>
+                </div>
                     <!-- termina parte dinamica de visualizacion de productos -->
                     <div class="product__pagination">
                         <a href="#">1</a>
@@ -586,6 +586,28 @@ $products= getActiveProducts();
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sucursalSelect = document.querySelector('select[name="sucursal"]');
+    const categoriaSelect = document.querySelector('select[name="categoria"]');
+    const productCountSpan = document.getElementById('product-count');
+
+    function updateProducts() {
+        const sucursal = sucursalSelect.value;
+        const categoria = categoriaSelect.value;
+        
+        fetch(`your_php_script.php?sucursal=${sucursal}&categoria=${categoria}`)
+            .then(response => response.text())
+            .then(html => {
+                document.querySelector('.row').innerHTML = html;
+                productCountSpan.textContent = document.querySelectorAll('.product__item').length;
+            });
+    }
+
+    sucursalSelect.addEventListener('change', updateProducts);
+    categoriaSelect.addEventListener('change', updateProducts);
+});
+</script>
 
 </body>
 
