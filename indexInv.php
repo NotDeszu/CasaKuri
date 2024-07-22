@@ -52,6 +52,12 @@ $inventario = $conn->query($sqlInventario);
                     Nuevo Inventario <i class="bi bi-plus-circle-fill"></i>
                 </button>
             </div>
+            <div class="col-auto">
+                <form action="reportes/reporteinv.php">
+                    <button type="submit" class="btn btn-warning">REPORTES <i class="bi bi-file-earmark"></i>
+                    </button>
+                </form>
+            </div>
         </div>
 
         <table class="table  table-sm table-striped table-hover text-center mt-4">

@@ -59,7 +59,7 @@ $dir = "funciones/imagenes/";
             </div>
 
             <div class="col-auto">
-                <form action="reportes/reporte.php">
+                <form action="reportes/reporteprod.php">
                     <button type="submit" class="btn btn-warning">REPORTES <i class="bi bi-file-earmark"></i>
                     </button>
                 </form>
