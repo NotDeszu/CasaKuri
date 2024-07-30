@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../../funciones/usuario.php";
 require_once '../../BD/conexion.php';
 
 require './carrito/prueba add pr/functions.php';
@@ -11,6 +12,8 @@ $products = getFilteredProducts($sucursal_id, $categoria_id);
 
 // Debug: Print the number of products found 
 echo "<!-- Debug: Number of products found: " . count($products) . " -->";
+
+
 
 ?>
 
@@ -30,6 +33,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="css/nice-select.css" type="text/css">
@@ -59,14 +63,14 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__auth">
-                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> 
-                <?php
-                    if(empty($_SESSION["usu_id"])){
+                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i>
+                    <?php
+                    if (empty($_SESSION["usu_id"])) {
                         echo "Iniciar Sesion";
-                    }else{
+                    } else {
                         echo "Cerrar Sesion";
                     }
-                ?>
+                    ?>
                 </a>
             </div>
         </div>
@@ -93,14 +97,14 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> 
-                <?php
-                    if(empty($_SESSION["usu_id"])){
+                <li><i class="fa fa-envelope"></i>
+                    <?php
+                    if (empty($_SESSION["usu_id"])) {
                         echo " ";
-                    }else{
+                    } else {
                         echo $_SESSION["usu_email"];
                     }
-                ?>
+                    ?>
                 </li>
                 <li>Envios a toda la Republica Mexicana</li>
             </ul>
@@ -109,88 +113,9 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i>
-                                <?php
-                                    if(empty($_SESSION["usu_id"])){
-                                        echo " ";
-                                    }else{
-                                        echo $_SESSION["usu_email"];
-                                    }
-                                ?>
-                                </li>
-                                <li>Envios a toda la republica Mexicana</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="https://www.facebook.com/casakuri"><i class="fa fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/casa.kuri/"><i class="fa fa-instagram"></i></a>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> 
-                                    <?php
-                                        if(empty($_SESSION["usu_id"])){
-                                            echo "Iniciar Sesion";
-                                        }else{
-                                            echo "Cerrar Sesion";
-                                        }
-                                    ?>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Aqui termina el header top -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./index.php"><img src="img/logo rm ck.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="header__menu">
-                        <ul>
-                            <li><a href="./index.php">Home</a></li>
-                            <li class="active"><a href="./shop-grid.php">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.php">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.php">Shoping Cart</a></li>
-                                    <li><a href="./checkout.php">Check Out</a></li>
-                                    <li><a href="./blog-details.php">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.php">Blog</a></li>
-                            <li><a href="./contact.php">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i><span>1</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
+    <?php
+    include "../../menus/menuFront.php";
+    ?>
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
@@ -262,50 +187,50 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                         <div class="sidebar__item">
                             <h4>Categorias</h4>
                             <ul>
-                            <li><a>Plumas</a></li>
-                            <li><a>Cuadernos</a></li>
-                            <li><a>Calculadoras</a></li>
-                            <li><a>Sacapuntas</a></li>
-                            <li><a>Marcadores</a></li>
-                            <li><a>Carpetas</a></li>
-                            <li><a>Resistol</a></li>
-                            <li><a>Gomas de Borrar</a></li>
-                            <li><a>Reglas</a></li>
-                            <li><a>Tijeras</a></li>
+                                <li><a>Plumas</a></li>
+                                <li><a>Cuadernos</a></li>
+                                <li><a>Calculadoras</a></li>
+                                <li><a>Sacapuntas</a></li>
+                                <li><a>Marcadores</a></li>
+                                <li><a>Carpetas</a></li>
+                                <li><a>Resistol</a></li>
+                                <li><a>Gomas de Borrar</a></li>
+                                <li><a>Reglas</a></li>
+                                <li><a>Tijeras</a></li>
                             </ul>
                         </div>
                         <!-- ctf -->
                         <div class="sidebar__item">
                             <div class="latest-product__text">
-                            <h4>Sucursales <br />Casa Kuri</h4>
-                            <div class="blog__sidebar__recent">
-                                <a class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/qro2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Sucursal<br /> Queretaro</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/gdlj2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Sucursal<br /> Guadalajara</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/mtry2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Sucursal<br />Monterrey</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
+                                <h4>Sucursales <br />Casa Kuri</h4>
+                                <div class="blog__sidebar__recent">
+                                    <a class="blog__sidebar__recent__item">
+                                        <div class="blog__sidebar__recent__item__pic">
+                                            <img src="img/blog/sidebar/qro2.jpg" alt="">
+                                        </div>
+                                        <div class="blog__sidebar__recent__item__text">
+                                            <h6>Sucursal<br /> Queretaro</h6>
+                                            <span>MAR 05, 2019</span>
+                                        </div>
+                                    </a>
+                                    <a class="blog__sidebar__recent__item">
+                                        <div class="blog__sidebar__recent__item__pic">
+                                            <img src="img/blog/sidebar/gdlj2.jpg" alt="">
+                                        </div>
+                                        <div class="blog__sidebar__recent__item__text">
+                                            <h6>Sucursal<br /> Guadalajara</h6>
+                                            <span>MAR 05, 2019</span>
+                                        </div>
+                                    </a>
+                                    <a class="blog__sidebar__recent__item">
+                                        <div class="blog__sidebar__recent__item__pic">
+                                            <img src="img/blog/sidebar/mtry2.jpg" alt="">
+                                        </div>
+                                        <div class="blog__sidebar__recent__item__text">
+                                            <h6>Sucursal<br />Monterrey</h6>
+                                            <span>MAR 05, 2019</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -321,11 +246,10 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                             <div class="product__discount__slider owl-carousel">
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="img/product/discount/gomapelikan.png">
+                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/gomapelikan.png">
                                             <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
-                                                
+
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -339,11 +263,10 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="img/product/discount/libretarayapelikan.png">
+                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/libretarayapelikan.png">
                                             <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
-                                                
+
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -357,11 +280,10 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="img/product/discount/marcatextosamarillo.png">
+                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/marcatextosamarillo.png">
                                             <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
-                                                
+
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -375,11 +297,10 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="img/product/discount/mochila1.png">
+                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/mochila1.png">
                                             <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
-                                                
+
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -393,11 +314,10 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="img/product/discount/pegamento850.png">
+                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/pegamento850.png">
                                             <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
-                                                
+
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -411,11 +331,10 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="img/product/discount/tijerasbarrilito.png">
+                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/tijerasbarrilito.png">
                                             <div class="product__discount__percent">new</div>
                                             <ul class="product__item__pic__hover">
-                                                
+
                                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -431,7 +350,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                         </div>
                     </div>
                     <div class="section-title product__discount__title">
-                    <h2>Productos Papeleria Kuri</h2>
+                        <h2>Productos Papeleria Kuri</h2>
                     </div>
                     <!-- empieza filtros de busqueda -->
                     <form method="GET" action="">
@@ -446,7 +365,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             $sucursales = getSucursales();
                                             foreach ($sucursales as $sucursal) {
                                                 $selected = ($_GET['sucursal'] == $sucursal['suc_id']) ? 'selected' : '';
-                                                echo "<option value='".$sucursal['suc_id']."' $selected>".$sucursal['suc_nombre']."</option>";
+                                                echo "<option value='" . $sucursal['suc_id'] . "' $selected>" . $sucursal['suc_nombre'] . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -461,7 +380,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             $categorias = getCategorias();
                                             foreach ($categorias as $categoria) {
                                                 $selected = ($_GET['categoria'] == $categoria['cat_id']) ? 'selected' : '';
-                                                echo "<option value='".$categoria['cat_id']."' $selected>".$categoria['cat_nombre']."</option>";
+                                                echo "<option value='" . $categoria['cat_id'] . "' $selected>" . $categoria['cat_nombre'] . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -474,33 +393,33 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 </div>
                             </div>
                         </div>
-                    </form> 
-                <!-- Aqui es la parte dinamica que agrega productos  -->
-                <div class="row">
-                    <?php if (empty($products)): ?>
-                        <p>No se encontraron productos que coincidan con los filtros seleccionados.</p>
-                    <?php else: ?>
-                        <?php foreach ($products as $product): ?>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic">
-                                        <img src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_Producto']); ?>">
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="shop-details.php?id=<?php echo $product['pro_id']; ?>"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="#" class="add-to-cart" data-pro-id="<?php echo $product['pro_id']; ?>">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <h6><a href="#"><?php echo htmlspecialchars($product['pro_Producto']); ?></a></h6>
-                                        <h5>$<?php echo number_format($product['pro_precio'], 2); ?></h5>
+                    </form>
+                    <!-- Aqui es la parte dinamica que agrega productos  -->
+                    <div class="row">
+                        <?php if (empty($products)) : ?>
+                            <p>No se encontraron productos que coincidan con los filtros seleccionados.</p>
+                        <?php else : ?>
+                            <?php foreach ($products as $product) : ?>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic">
+                                            <img src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_Producto']); ?>">
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="shop-details.php?id=<?php echo $product['pro_id']; ?>"><i class="fa fa-eye"></i></a></li>
+                                                <li><a href="#" class="add-to-cart" data-pro-id="<?php echo $product['pro_id']; ?>">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="#"><?php echo htmlspecialchars($product['pro_Producto']); ?></a></h6>
+                                            <h5>$<?php echo number_format($product['pro_precio'], 2); ?></h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
                     <!-- termina parte dinamica de visualizacion de productos -->
                     <div class="product__pagination">
                         <a href="#">1</a>
@@ -571,7 +490,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
             <div class="row">
                 <div class="col-lg-12">
 
-                </div>   
+                </div>
             </div>
         </div>
     </footer>
@@ -587,27 +506,27 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sucursalSelect = document.querySelector('select[name="sucursal"]');
-    const categoriaSelect = document.querySelector('select[name="categoria"]');
-    const productCountSpan = document.getElementById('product-count');
+        document.addEventListener('DOMContentLoaded', function() {
+            const sucursalSelect = document.querySelector('select[name="sucursal"]');
+            const categoriaSelect = document.querySelector('select[name="categoria"]');
+            const productCountSpan = document.getElementById('product-count');
 
-    function updateProducts() {
-        const sucursal = sucursalSelect.value;
-        const categoria = categoriaSelect.value;
-        
-        fetch(`your_php_script.php?sucursal=${sucursal}&categoria=${categoria}`)
-            .then(response => response.text())
-            .then(html => {
-                document.querySelector('.row').innerHTML = html;
-                productCountSpan.textContent = document.querySelectorAll('.product__item').length;
-            });
-    }
+            function updateProducts() {
+                const sucursal = sucursalSelect.value;
+                const categoria = categoriaSelect.value;
 
-    sucursalSelect.addEventListener('change', updateProducts);
-    categoriaSelect.addEventListener('change', updateProducts);
-});
-</script>
+                fetch(`your_php_script.php?sucursal=${sucursal}&categoria=${categoria}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.querySelector('.row').innerHTML = html;
+                        productCountSpan.textContent = document.querySelectorAll('.product__item').length;
+                    });
+            }
+
+            sucursalSelect.addEventListener('change', updateProducts);
+            categoriaSelect.addEventListener('change', updateProducts);
+        });
+    </script>
 
 </body>
 

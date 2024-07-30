@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../../BD/conexion.php");
+include "../../funciones/usuario.php";
 
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -16,6 +17,7 @@ if (!$product) {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -33,6 +35,7 @@ if (!$product) {
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="css/nice-select.css" type="text/css">
@@ -43,7 +46,6 @@ if (!$product) {
 </head>
 
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -71,14 +73,14 @@ if (!$product) {
                 </ul>
             </div> -->
             <div class="header__top__right__auth">
-                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> 
-                <?php
-                    if(empty($_SESSION["usu_id"])){
+                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i>
+                    <?php
+                    if (empty($_SESSION["usu_id"])) {
                         echo "Iniciar Sesion";
-                    }else{
+                    } else {
                         echo "Cerrar Sesion";
                     }
-                ?>
+                    ?>
                 </a>
             </div>
         </div>
@@ -105,14 +107,14 @@ if (!$product) {
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> 
-                <?php
-                    if(empty($_SESSION["usu_id"])){
+                <li><i class="fa fa-envelope"></i>
+                    <?php
+                    if (empty($_SESSION["usu_id"])) {
                         echo " ";
-                    }else{
+                    } else {
                         echo $_SESSION["usu_email"];
                     }
-                ?>
+                    ?>
                 </li>
                 <li>Envios a toda la Republica Mexicana</li>
             </ul>
@@ -121,88 +123,9 @@ if (!$product) {
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i>
-                                <?php
-                                    if(empty($_SESSION["usu_id"])){
-                                        echo " ";
-                                    }else{
-                                        echo $_SESSION["usu_email"];
-                                    }
-                                ?>
-                                </li>
-                                <li>Envios a toda la republica Mexicana</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="https://www.facebook.com/casakuri"><i class="fa fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/casa.kuri/"><i class="fa fa-instagram"></i></a>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href="controlador_cerrars2.php"><i class="fa fa-user"></i> 
-                                    <?php
-                                        if(empty($_SESSION["usu_id"])){
-                                            echo "Iniciar Sesion";
-                                        }else{
-                                            echo "Cerrar Sesion";
-                                        }
-                                    ?>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Aqui termina el header top -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./index.php"><img src="img/logo rm ck.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="header__menu">
-                        <ul>
-                            <li><a href="./index.php">Home</a></li>
-                            <li class="active"><a href="./shop-grid.php">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.php">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.php">Shoping Cart</a></li>
-                                    <li><a href="./checkout.php">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.php">Blog</a></li>
-                            <li><a href="./contact.php">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
+    <?php
+    include "../../menus/menuFront.php";
+    ?>
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
@@ -284,44 +207,75 @@ if (!$product) {
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="">
+                            <img class="product__details__pic__item--large" src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="">
                         </div>
-                        <!-- <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                                src="img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                                src="img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                                src="img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                                src="img/product/details/thumb-4.jpg" alt="">
-                        </div> -->
+
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3><?php echo htmlspecialchars($product['pro_Producto']); ?></h3>
-                        <!-- <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
-                        </div> -->
+
                         <div class="product__details__price">$<?php echo number_format($product['pro_precio'], 2); ?></div>
 
                         <p><?php echo htmlspecialchars($product['pro_decripcion']); ?></p>
 
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
+                        <!--fORMULARIO DE CARRITO-->
+                        <div>
+                            <form action="carritoGuarda.php" method="GET">
+                                <h3>Selecciona la sucursal: </h3>
+                                <select id="inventa" name="inventa" onchange="cantidadMax()">
+                                    <option>Elige la sucursal</option>
+                                    <?php
+                                    // Consulta para obtener las existencias y sucursales
+                                    $sucsql = "SELECT * FROM inventario i, sucursal s WHERE pro_id = " . $product_id . " AND i.suc_id = s.suc_id";
+                                    $sucres = mysqli_query($conn, $sucsql); // Ejecuta la consulta
+                                    if (!$sucres) {
+                                        die("Error en la consulta: " . mysqli_error($conn)); // Manejo de errores
+                                    }
+
+                                    if (mysqli_num_rows($sucres) > 0) {
+                                        while ($existe = mysqli_fetch_array($sucres)) { ?>
+                                            <option value="<?php echo $existe["inv_id"]; ?>" data-existencia="<?php echo $existe["inv_existencia"]; ?>">
+                                                <?php echo "( " . $existe["inv_existencia"] . " ) " . $existe["suc_nombre"]; ?>
+                                            </option>
+                                        <?php }
+                                    } else { ?>
+                                        <option value="">Sin existencia</option>
+                                    <?php } ?>
+                                </select>
+
+                                <br>
+                                <br>
+                                <p id="_in_clave"></p>
+                                <script>
+                                    function cantidadMax() {
+                                        var select = document.getElementById("inventa");
+                                        var selectedOption = select.options[select.selectedIndex];
+                                        var existencias = selectedOption.getAttribute("data-existencia"); // Obtiene la cantidad de existencias
+
+                                        // Actualiza el párrafo con la cantidad de existencias
+                                        document.getElementById("_in_clave").innerHTML = "Cantidad en existencia: " + existencias;
+
+                                        // Establece el valor máximo del input de cantidad
+                                        var cantidadInput = document.getElementById("cant");
+                                        cantidadInput.setAttribute("max", existencias); // Establece el máximo
+                                        cantidadInput.value = 0; // Resetea el valor a 0 cuando se cambia la sucursal
+                                    }
+                                </script>
+
+                                <h3>Cantidad</h3>
+                                <input type="number" id="cant" name="cant" min="0" value="0">
+
+                                <br>
+                                <input type="hidden" id="cliente" name="cliente" value="<?php echo $usuario_id; ?>">
+                                <input type="hidden" id="accion" name="accion" value="insCarrito">
+
+                                <br>
+                                <button class="primary-btn" type="submit"> Agregar al Carrito</button>
+                            </form>
+
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
@@ -341,16 +295,13 @@ if (!$product) {
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Description</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Information</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">Information</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">Reviews <span>(1)</span></a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" aria-selected="false">Reviews <span>(1)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -367,7 +318,7 @@ if (!$product) {
                                         elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
                                         et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
                                         vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
                                         ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
                                         elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
                                         porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
@@ -554,7 +505,7 @@ if (!$product) {
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    
+
                 </div>
             </div>
         </div>
