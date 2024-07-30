@@ -30,14 +30,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Front/ogani/index.php">Pagina de Inicio</a>
                     </li>
-                    <li class ="text-white"> 
+                    <li class ="row justify-content-end align-items-center">
+                    <p class="text-white"> 
                     <?php
                         if(empty($_SESSION["usu_id"])){
                             echo " ";
-                        }else{
+                        }else{ 
                             echo $_SESSION["usu_email"];
                         }
                     ?>
+                    </p>
                     </li>
                 </ul>
             </div>

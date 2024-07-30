@@ -28,6 +28,23 @@ $cantidadCarrito = $conn->query($sqlCantTotCarr);
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
+
+<!-- Esta parte muestra un link hacia el panel administrador, si es que el usuario logeado tiene el rol de admin -->
+                                <?php
+                                if (isset($_SESSION["rol_id"])) {
+                                    if ($_SESSION["rol_id"] == 0) {
+                                        echo " ";
+                                    } elseif ($_SESSION["rol_id"] == 1) { ?>
+                                        <a href="../../indexAdmin.php">Pagina de Administrador</a>
+                                    <?php
+                                    } else {
+                                        echo " ";
+                                    }                        
+                                } else {
+                                    echo " ";
+                                }
+                                ?>
+                        <!-- fin -->
                                 <a href="https://www.facebook.com/casakuri"><i class="fa fa-facebook"></i></a>
                                 <a href="https://www.instagram.com/casa.kuri/"><i class="fa fa-instagram"></i></a>
                             </div>
