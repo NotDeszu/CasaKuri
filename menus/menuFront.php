@@ -76,7 +76,7 @@ $cantidadCarrito = $conn->query($sqlCantTotCarr);
                     <nav class="header__menu">
                         <ul>
                             <li><a href="./index.php">Inicio</a></li>
-                            <li class="active"><a href="./shop-grid.php">Productos</a></li>
+                            <li><a href="./shop-grid.php">Productos</a></li>
                             <li><a href="#">Paginas</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.php">Productos</a></li>

@@ -114,12 +114,16 @@ include "../../funciones/usuario.php";
 
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/lapicescasakuri.png">
+    <section class="blog-details-hero set-bg" data-setbg="img/blog/details/lapicescasakuri2.png">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Blog</h2>
+                <div class="col-lg-12">
+                    <div class="blog__details__hero__text">
+                        <h2>Explora un mundo de creatividad en nuestra tienda donde cada idea encuentra su herramienta perfecta</h2>
+                        <ul>
+                            <li>por Felipe Cruz</li>
+                            <li>Julio 10, 2024</li>
+                        </ul>
                         <div class="breadcrumb__option">
                             <a href="./index.php">Home</a>
                             <span>Blog</span>
@@ -131,191 +135,186 @@ include "../../funciones/usuario.php";
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- Blog Section Begin -->
-    <section class="blog spad">
+<!-- Blog Details Section Begin -->
+<section class="blog-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-5">
+                <div class="col-lg-4 col-md-5 order-md-1 order-2">
                     <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
                         <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
+                            <h4>Valores</h4>
                             <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Beauty (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
+                                <li><a>Calidad</a></li>
+                                <li><a>Servicio</a></li>
+                                <li><a>Innovacion</a></li>
+                                <li><a>Integridad</a></li>
+                                <li><a>Responsabilidad</a></li>
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>Recent News</h4>
+                            <h4>Mision</h4>
+                            <ul>
+                                <li><p>Proveer productos de papelería de alta calidad y accesibles.</p></li>
+                                <li><p>Ofrecer un servicio al cliente excepcional.</p></li>
+                                <li><p>Fomentar relaciones duraderas con proveedores</p></li>
+                            </ul>
+                        </div>
+                        <div class="blog__sidebar__item">
+                            <h4>Vision</h4>
+                            <ul>
+                                <li><p>Expandir nuestra presencia física y digital.</p></li>
+                                <li><p>Liderar en innovación en el sector de papelería.</p></li>
+                                <li><p>Ser la tienda de papelería líder y de referencia.</p></li>
+                            </ul>
+                        </div>
+                        <div class="blog__sidebar__item">
+                            <h4>Objetivos</h4>
+                            <ul>
+                                <li><p>Incrementar ventas un 20% anual.</p></li>
+                                <li><p>Añadir 25 nuevos productos al año</p></li>
+                                <li><p>Mejorar la capacitación del personal.</p></li>
+                            </ul>
+                        </div>
+                        <div class="blog__sidebar__item">
+                            <h4>Sucursales Casa Kuri</h4>
                             <div class="blog__sidebar__recent">
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
+                                        <img src="img/blog/sidebar/qro2.jpg" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
+                                        <h6>Queretaro<br /> </h6>
+                                        <span>Julio 27, 2019</span>
                                     </div>
                                 </a>
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
+                                        <img src="img/blog/sidebar/mtry2.jpg" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
+                                        <h6>Monterrey<br /> </h6>
+                                        <span>MAR 07, 2021</span>
                                     </div>
                                 </a>
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
+                                        <img src="img/blog/sidebar/gdlj2.jpg" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
+                                        <h6>Guadalajara<br /> </h6>
+                                        <span>Nov 23, 2023</span>
                                     </div>
                                 </a>
-                            </div>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Search By</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-7">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-2.jpg" alt="">
+                <div class="col-lg-8 col-md-7 order-md-1 order-1">
+                    <div class="blog__details__text">
+                        <h3>Casa Kuri</h3>
+                        <img src="img/blog/details/Prod.jpg" alt="">
+                        <p>En Casa Kuri, nos enorgullecemos de ofrecerte los mejores productos de papelería del mercado. Desde útiles escolares hasta suministros de oficina, tenemos todo lo que necesitas para tu día a día. Nuestra amplia gama de productos incluye lápices, plumas, cuadernos, carpetas, y mucho más, siempre con la mejor calidad y a precios competitivos.
+                            Sabemos lo importante que es contar con materiales confiables y de alta calidad, por eso, trabajamos incansablemente para asegurarnos de que cada artículo que encuentres en Casa Kuri cumpla con tus expectativas. Ya sea que estés preparando a tus hijos para el nuevo año escolar o abasteciendo tu oficina, estamos aquí para ayudarte a encontrar exactamente lo que necesitas.
+                            Además, en Casa Kuri creemos en la importancia de un servicio al cliente excepcional. Nos comprometemos a brindarte una experiencia de compra agradable y personalizada. Nuestro equipo está siempre dispuesto a asesorarte y resolver cualquier duda que puedas tener.
+                            Te invitamos a visitar nuestra tienda y descubrir por ti mismo la diferencia que hace comprar en Casa Kuri. Únete a nuestra familia de clientes satisfechos y disfruta de los beneficios de comprar en una tienda que realmente se preocupa por ti.</p>
+                        <h3>Casa Kuri: Tu Aliado de Confianza en Productos de Papelería de Alta Calidad para Todas tus Necesidades</h3>
+                        <p>En Casa Kuri, nos esforzamos diariamente para ser tu mejor opción en productos de papelería. Nos enorgullece ofrecer una amplia selección de artículos de la más alta 
+                            calidad, respaldados por un servicio al cliente excepcional. Creemos en la importancia de los pequeños detalles y en la diferencia que estos pueden hacer en tu vida diaria, ya sea en el ámbito escolar, profesional o personal. Te invitamos a unirte a nuestra comunidad de clientes satisfechos y a experimentar la comodidad y satisfacción de comprar con una empresa que valora tu confianza y se dedica a brindarte lo mejor. Gracias por elegir Casa Kuri, donde cada compra es una inversión en calidad y servicio.</p>
+                    </div>
+                    <div class="blog__details__content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="blog__details__author">
+                                    <div class="blog__details__author__pic">
+                                        <img src="img/blog/details/desu.jpg" alt="">
+                                    </div>
+                                    <div class="blog__details__author__text">
+                                        <h6>Felipe Cruz</h6>
+                                        <span>Admin</span>
+                                    </div>
                                 </div>
-                                <div class="blog__item__text">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="blog__details__widget">
                                     <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
+                                        <li><span>Cualidades:</span> Creativo, Responsable, Lider</li>
                                     </ul>
-                                    <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                    <div class="blog__details__social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-3.jpg" alt="">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="blog__details__author">
+                                    <div class="blog__details__author__pic">
+                                        <img src="img/blog/details/alex.jpg" alt="">
+                                    </div>
+                                    <div class="blog__details__author__text">
+                                        <h6>Alex Fajardo</h6>
+                                        <span>Admin</span>
+                                    </div>
                                 </div>
-                                <div class="blog__item__text">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="blog__details__widget">
                                     <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
+                                        <li><span>Cualidades:</span> Responsable, Empatico, lider</li>
                                     </ul>
-                                    <h5><a href="#">Visit the clean farm in the US</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                    <div class="blog__details__social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="blog__details__author">
+                                    <div class="blog__details__author__pic">
+                                        <img src="img/blog/details/rosbb.png" alt="">
+                                    </div>
+                                    <div class="blog__details__author__text">
+                                        <h6>Diego Rosales</h6>
+                                        <span>Admin</span>
+                                    </div>
                                 </div>
-                                <div class="blog__item__text">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="blog__details__widget">
                                     <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
+                                        <li><span>Cualidades:</span> Puntual, Resiliente, Responsable</li>
                                     </ul>
-                                    <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                    <div class="blog__details__social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">The Moment You Need To Remove Garlic From The Menu</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-6.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Blog Section End -->
+    <!-- Blog Details Section End -->
+
+    <!-- Related Blog Section Begin -->
+    <!-- Related Blog Section End -->
 
     <!-- Footer Section Begin -->
     <?php

@@ -168,7 +168,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                         </div>
                                         <div class="blog__sidebar__recent__item__text">
                                             <h6>Sucursal<br /> Queretaro</h6>
-                                            <span>MAR 05, 2019</span>
+                                            <span>Julio 27, 2019</span>
                                         </div>
                                     </a>
                                     <a class="blog__sidebar__recent__item">
@@ -177,7 +177,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                         </div>
                                         <div class="blog__sidebar__recent__item__text">
                                             <h6>Sucursal<br /> Guadalajara</h6>
-                                            <span>MAR 05, 2019</span>
+                                            <span>MAR 07, 2021</span>
                                         </div>
                                     </a>
                                     <a class="blog__sidebar__recent__item">
@@ -186,7 +186,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                         </div>
                                         <div class="blog__sidebar__recent__item__text">
                                             <h6>Sucursal<br />Monterrey</h6>
-                                            <span>MAR 05, 2019</span>
+                                            <span>Nov 23, 2023</span>
                                         </div>
                                     </a>
                                 </div>
