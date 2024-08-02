@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalInveLabel">Inventario</h1>
+                <h1 class="modal-title fs-5" id="ModalInveLabel">Nuevo - Inventario</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -13,16 +13,15 @@
                     <!-- Existencia -->
                     <div class="mb-3">
                         <label for="producto" class="form-label">Existencia</label>
-                        <input type="text" id="existencia" name="existencia" class="form-control">
+                        <input type="number" min="1" id="existencia" name="existencia" class="form-control">
                     </div>
-
 
                     <div class="mb-3">
                         <label for="categorias" class="form-label">Producto</label>
                         <select name="producto" id="producto" class="form-select">
 
                             <?php
-                            $sqlProductos = "SELECT  pro_id, pro_producto from productos where pro_status=1;";
+                            $sqlProductos = "SELECT  pro_id, pro_producto from productos;";
                             $productos = $conn->query($sqlProductos);
                             while ($row_productos = $productos->fetch_array()) { ?>
 
@@ -53,7 +52,6 @@
                     </div>
 
                 </form>
-
 
             </div>
             <div class="modal-footer">

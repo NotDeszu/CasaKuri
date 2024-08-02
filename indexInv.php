@@ -20,11 +20,9 @@ require "BD/conexion.php";
 $sqlInventario = "SELECT productos.pro_id, productos.pro_Producto,inventario.inv_id, inventario.inv_existencia, sucursal.suc_nombre
 FROM inventario
 JOIN productos ON inventario.pro_id=productos.pro_id
-JOIN sucursal ON inventario.suc_id=sucursal.suc_id
-where pro_status=1";
+JOIN sucursal ON inventario.suc_id=sucursal.suc_id";
 $inventario = $conn->query($sqlInventario);
 
-//comentario, prueba de subida de archivo a github
 ?>
 
 
@@ -45,6 +43,23 @@ $inventario = $conn->query($sqlInventario);
 
     <div class="container py-3">
         <h2 class="text-center">Inventario</h2>
+
+
+
+        <?php
+        if (isset($_SESSION['msg']) && isset($_SESSION['color'])) { ?>
+            <div class="alert alert-<?= $_SESSION['color']; ?> alert-dismissible fade show" role="alert">
+                <?= $_SESSION['msg']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+            unset($_SESSION['color']);
+            unset($_SESSION['msg']);
+        }
+        ?>
+
+
+
 
         <div class="row justify-content-end">
             <div class="col-auto">
@@ -74,20 +89,32 @@ $inventario = $conn->query($sqlInventario);
             <tbody>
                 <?php
                 while ($row_inventario = $inventario->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?= $row_inventario['inv_id']; ?> </td>
-                        <td><?= $row_inventario['pro_id']; ?> </td>
-                        <td><?= $row_inventario['pro_Producto']; ?> </td>
-                        <td><?= $row_inventario['inv_existencia']; ?> </td>
-                        <td><?= $row_inventario['suc_nombre']; ?> </td>
-                        <td>
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" data-bs-id="<?= $row_inventario['inv_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
-                        </td>
-
-                    </tr>
+                    <?php
+                    if($row_inventario["inv_existencia"]>=1){ ?> 
+                            <tr>
+                                <td><?= $row_inventario['inv_id']; ?> </td>
+                                <td><?= $row_inventario['pro_id']; ?> </td>
+                                <td><?= $row_inventario['pro_Producto']; ?> </td>
+                                <td><?= $row_inventario['inv_existencia']; ?> </td>
+                                <td><?= $row_inventario['suc_nombre']; ?> </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" data-bs-id="<?= $row_inventario['inv_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
+                                </td>
+                            </tr>
+                    <?php   }else{ ?>
+                        <tr class ="table-danger">
+                                <td><?= $row_inventario['inv_id']; ?> </td>
+                                <td><?= $row_inventario['pro_id']; ?> </td>
+                                <td><?= $row_inventario['pro_Producto']; ?> </td>
+                                <td><?= $row_inventario['inv_existencia']; ?> </td>
+                                <td><?= $row_inventario['suc_nombre']; ?> </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" data-bs-id="<?= $row_inventario['inv_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
+                                </td>
+                            </tr>
+                    <?php    } ?>
                 <?php }
                 ?>
-
             </tbody>
         </table>
     </div>

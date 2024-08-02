@@ -12,7 +12,7 @@
                     <!-- Existencia -->
                     <div class="mb-3">
                         <label for="producto" class="form-label">Existencia</label>
-                        <input type="text" id="existencia" name="existencia" class="form-control">
+                        <input type="number" min="0" id="existencia" name="existencia" class="form-control">
                     </div>
 
 
@@ -21,7 +21,7 @@
                         <select name="producto" id="producto" class="form-select">
 
                             <?php
-                            $sqlProductos = "SELECT  pro_id, pro_producto from productos where pro_status=1;";
+                            $sqlProductos = "SELECT  pro_id, pro_producto from productos";
                             $productos = $conn->query($sqlProductos);
                             while ($row_productos = $productos->fetch_array()) { ?>
 
