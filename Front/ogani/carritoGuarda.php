@@ -9,6 +9,8 @@ $iva = 0.16;
 
 
 
+
+
 echo "<br>c.cliente ".$clClave;
 echo "<br> cantidad  ".$prCant;
 echo "<br> c.inventario ".$inClave;
@@ -66,7 +68,7 @@ if ($miAccion == "insCarrito"){
      if ($prCant > $maxDisponible) {
       echo "<br> Error. La cantidad debe ser menor o igual a la existencia.";
       //
-    } elseif ($totSolicitado > $maxDisponible) {
+    } elseif ($prCant > $maxDisponible) {
       echo "<br> Esta solicitando ".$prCant." productos. En su carrito ya existe ".$filaprodExis["carinv_cantidad"]." producto de la misma sucuarsal. La cantidad total sobrepasa la existencia de la sucursal .".$totSolicitado;
     }else{
       echo "<br> Alta de carrito <br>";
@@ -80,7 +82,7 @@ if ($miAccion == "insCarrito"){
                       
       }else{ //si el producto no está en car_inv y se agrega
         $sqlinsProd = "insert into carr_inv (car_id, inv_id, carinv_cantidad, carinv_subtotal) values 
-                      ($carrClave, $inClave, $totSolicitado, $totSolicitado*$prCosto ) ";
+                      ($carrClave, $inClave, $prCant, $prCant*$prCosto ) ";
         $rescreaCarrInv = mysqli_query($conn,$sqlinsProd);
         echo "<br> $sqlinsProd"; 
       } // if ($rescarrExis) {
@@ -103,7 +105,7 @@ if ($miAccion == "insCarrito"){
   
     }// if ($prCant > $maxDisponible) 
   };  //$miAccion //($prCant > $maxDisponible)
-  header("Location: shop-details.php");
+  header("Location: shoping-cart.php");
   mysqli_close($conn); 
   
   

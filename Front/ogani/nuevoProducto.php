@@ -36,6 +36,7 @@ function uploadImage($file) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $producto = $conn->real_escape_string($_POST['producto']);
     $precio = $conn->real_escape_string($_POST['precio']);
+    $precioIva = $precio + ($precio*0.16);
     $categoria = $conn->real_escape_string($_POST['categoria']);
     $descripcion = $conn->real_escape_string($_POST['descripcion']);
 
@@ -54,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Insert into database
     $sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_decripcion, pro_imagen, cat_id) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sdsss", $producto, $precio, $descripcion, $imagen, $categoria);
+    $stmt->bind_param("sdsss", $producto, $precioIva, $descripcion, $imagen, $categoria);
 
     if ($stmt->execute()) {
         $id = $conn->insert_id;

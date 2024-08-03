@@ -1,6 +1,10 @@
 <?php
-include("../../BD/conexion.php");
+// Verifica si hay un mensaje en la URL
+if (isset($_GET['message']) && $_GET['message'] === 'datos_recibidos') {
+    echo '<div class="alert alert-success" role="alert">Datos recibidos.</div>';
+}
 session_start();
+include("../../BD/conexion.php");
 include "../../funciones/usuario.php";
 
 
@@ -16,11 +20,6 @@ $sqlDetalles = "SELECT car_total, car_subtotal FROM carrito WHERE usu_id = $usua
 $detalles = $conn->query($sqlDetalles);
 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -36,6 +35,7 @@ $detalles = $conn->query($sqlDetalles);
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -44,9 +44,10 @@ $detalles = $conn->query($sqlDetalles);
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=AXd1CrQrWcdIbGX1wsvNP6DH-j40e3rkdebVDwCiqbMk0B_bEX6XaFjETom8mt6BD1EBArMIJEl2H_5Y&currency=MXN"></script>
 
 </head>
-
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -114,7 +115,7 @@ $detalles = $conn->query($sqlDetalles);
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Carrito de Compras</h2>
+                        <h2>Detalles de pago</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.php">Home</a>
                             <span>Carrito de Compras</span>
@@ -126,87 +127,107 @@ $detalles = $conn->query($sqlDetalles);
     </section>
     <!-- Breadcrumb Section End -->
 
+
+
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
-                        <form method="POST" action="ActualizarCarrito.php">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="">Productos</th>
-                                        <th></th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th>Total</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php while ($row_carrito = $carrito->fetch_assoc()) { ?>
-                                        <tr>
-                                            <td><img class="" width="150" height="150" src="<?php echo htmlspecialchars($row_carrito['pro_imagen']); ?>" alt=""></td>
-                                            <td><?= htmlspecialchars($row_carrito['pro_Producto']); ?> </td>
-                                            <td>$<?= htmlspecialchars($row_carrito['pro_precio']); ?></td>
-                                            <td>
-                                                <div class="">
-                                                    <div class="">
-                                                        <input type="hidden" name="pro_id[]" value="<?= htmlspecialchars($row_carrito['pro_id']); ?>">
-                                                        <input class="inputN" type="number" name="quantity[]" min="0" step="1" value="<?= htmlspecialchars($row_carrito['carinv_cantidad']); ?>" size="5">
-                                                        <style>
-                                                            input[type="number"] {
-                                                                background-color: transparent;
-                                                                width: 100px;
-                                                                border: 1px solid #ccc;
-                                                                /* Cambia el color del borde si es necesario */
-                                                                color: #000;
-                                                                /* Cambia el color del texto si es necesario */
-                                                                padding: 5px;
-                                                                /* Ajusta el relleno según tus necesidades */
-                                                                font-size: 16px;
-                                                                /* Ajusta el tamaño de la fuente según tus necesidades */
-                                                                outline: none;
-                                                                border: line;
-                                                                /* Elimina el contorno al hacer clic */
-                                                            }
-                                                        </style>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>$<?= htmlspecialchars($row_carrito['carinv_subtotal']); ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                            <div class="shoping__cart__btns">
-                                <a href="shop-details.php" class="primary-btn cart-btn">Seguir comprando</a>
-                                <button type="submit" class="primary-btn cart-btn cart-btn-right">Actualizar Carrito <span class="icon_loading"></span></button>
-                            </div>
-                        </form>
+
+        <div class="row justify-content-center"> <!-- Centrar todo el contenido -->
+            <div class="col-8"> <!-- Aumenta el tamaño de la columna -->
+                <div class="shoping__cart__table">
+                    <table class="table" style="width: 100%; border-collapse: collapse;"> <!-- Sin bordes -->
+                        <thead>
+                            <tr class="text-center">
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row_carrito = $carrito->fetch_assoc()) { ?>
+                                <tr class="text-center">
+                                    <td><?= htmlspecialchars($row_carrito['pro_Producto']); ?></td>
+                                    <td><?= htmlspecialchars($row_carrito['carinv_cantidad']); ?></td>
+                                    <td>$<?= htmlspecialchars($row_carrito['carinv_subtotal']); ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <?php if ($row_detalles = $detalles->fetch_assoc()) { ?>
+                    <div class="d-flex justify-content-center" style="margin-top: 10px;">
+                        <strong>Total con IVA: $<?= $total = $row_detalles['car_total']; ?></strong>
                     </div>
+                <?php } ?>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalfactura">
+                        Requiero Factura
+                    </button>
+                </div>
+
+                <div id="paypal" class="d-flex justify-content-center" style="margin-top: 20px;"></div> <!-- Botones de PayPal centrados -->
+            </div>
+        </div>
+
+
+        <!-- Modal para solicitar factura -->
+
+
+        <script>
+            paypal.Buttons({
+                style: {
+                    color: 'blue',
+                    shape: 'pill',
+                    label: 'pay'
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: <?php echo $total ?>
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    let url = '../../funciones/capturaPaypal.php';
+                    return actions.order.capture().then(function(detalles) {
+                        console.log(detalles);
+                        return fetch(url, {
+                            method: 'post',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                detalles: detalles
+                            })
+                        }).then(function(response) {
+                            // Redirigir a la página de compra finalizada
+                            window.location.href = 'compraFinalizada.php';
+                        });
+                    });
+                },
+                onCancel: function(data) {
+                    alert("Pago cancelado");
+                    console.log(data);
+                },
+                onError: function(err) {
+                    console.error('Error occurred during the transaction', err);
+                }
+            }).render("#paypal");
+        </script>
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="shoping__continue">
+                    <div class="shoping__discount"></div>
                 </div>
             </div>
+            <div class="col-6">
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="shoping__continue">
-                        <div class="shoping__discount"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="shoping__checkout">
-                        <h5>Detalles</h5>
-                        <?php while ($row_detalles = $detalles->fetch_assoc()) { ?>
-                            <ul>
-                                <li>Subtotal <span>$<?= $row_detalles['car_subtotal']; ?></span></li>
-                                <li>Total con IVA <span>$<?= $row_detalles['car_total']; ?></span></li>
-                            </ul>
-                        <?php } ?>
-                        <a href="Detalles.php" class="primary-btn">PROCEDER AL PAGO</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -222,8 +243,13 @@ $detalles = $conn->query($sqlDetalles);
     include "../../menus/footer.html";
     ?>
     <!-- Footer Section End -->
+    <?php
+    include('modalfactura.php');
+    ?>
 
     <!-- Js Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -232,7 +258,6 @@ $detalles = $conn->query($sqlDetalles);
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
 
 </body>
 

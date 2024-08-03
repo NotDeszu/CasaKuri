@@ -1,7 +1,4 @@
 <?php
-require_once '../../BD/conexion.php';
-
-
 if (!empty($_SESSION["usu_id"])) {
     // Guarda el ID del usuario en una variable
     $usuario_id = $_SESSION["usu_id"];

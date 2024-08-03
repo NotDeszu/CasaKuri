@@ -361,7 +361,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__item__pic">
-                                            <img src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_Producto']); ?>">
+                                            <img class="" src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_Producto']); ?>">
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="shop-details.php?id=<?php echo $product['pro_id']; ?>"><i class="fa fa-eye"></i></a></li>
                                                 <li><a href="#" class="add-to-cart" data-pro-id="<?php echo $product['pro_id']; ?>">

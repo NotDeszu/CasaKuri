@@ -1,7 +1,7 @@
 .container {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
     width: 90%;
@@ -9,7 +9,8 @@
 }
 
 .signup-section {
-    background-color: #7fad39; /* Background color for signup section */
+    background-color: #7fad39;
+    /* Background color for signup section */
     color: white;
     padding: 40px;
     text-align: center;
@@ -92,27 +93,29 @@ body {
     font-family: Arial, sans-serif;
     width: 100%;
     height: 100%;
-    --s: 194px; /* control the size */
+    --s: 194px;
+    /* control the size */
     --c1: #f6edb3;
     --c2: #acc4a3;
-  
+
     --_l: #0000 calc(25% / 3), var(--c1) 0 25%, #0000 0;
     --_g: conic-gradient(from 120deg at 50% 87.5%, var(--c1) 120deg, #0000 0);
-  
+
     background: var(--_g), var(--_g) 0 calc(var(--s) / 2),
-      conic-gradient(from 180deg at 75%, var(--c2) 60deg, #0000 0),
-      conic-gradient(from 60deg at 75% 75%, var(--c1) 0 60deg, #0000 0),
-      linear-gradient(150deg, var(--_l)) 0 calc(var(--s) / 2),
-      conic-gradient(
-        at 25% 25%,
-        #0000 50%,
-        var(--c2) 0 240deg,
-        var(--c1) 0 300deg,
-        var(--c2) 0
-      ),
-      linear-gradient(-150deg, var(--_l)) #55897c /* third color here */;
+        conic-gradient(from 180deg at 75%, var(--c2) 60deg, #0000 0),
+        conic-gradient(from 60deg at 75% 75%, var(--c1) 0 60deg, #0000 0),
+        linear-gradient(150deg, var(--_l)) 0 calc(var(--s) / 2),
+        conic-gradient(at 25% 25%,
+            #0000 50%,
+            var(--c2) 0 240deg,
+            var(--c1) 0 300deg,
+            var(--c2) 0),
+        linear-gradient(-150deg, var(--_l)) #55897c
+        /* third color here */
+    ;
     background-size: calc(0.866 * var(--s)) var(--s);
 }
+
 .botonlogin {
     display: flex;
     justify-content: center;
@@ -131,12 +134,13 @@ body {
     border: 1px solid #e8e8e8;
     box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
+
 .botonlogin:active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
-  }
-  
-  .botonlogin:before {
+}
+
+.botonlogin:before {
     content: "";
     position: absolute;
     left: 50%;
@@ -149,9 +153,9 @@ body {
     display: block;
     transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
-  }
-  
-  .botonlogin:after {
+}
+
+.botonlogin:after {
     content: "";
     position: absolute;
     left: 55%;
@@ -164,22 +168,33 @@ body {
     display: block;
     transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
     z-index: -1;
-  }
-  
-  .botonlogin:hover {
+}
+
+.botonlogin:hover {
     color: #ffffff;
     border: 1px solid #009087;
-  }
-  
-  .botonlogin:hover:before {
+}
+
+.botonlogin:hover:before {
     top: -35%;
     background-color: #009087;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-  }
-  
-  .botonlogin:hover:after {
+}
+
+.botonlogin:hover:after {
     top: -45%;
     background-color: #009087;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-  }
-  
+}
+
+.inputN {
+    background-color: transparent;
+    width: 100px;
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 5px;
+    font-size: 16px;
+    outline: none;
+    border: line;
+    /* Elimina el contorno al hacer clic */
+}

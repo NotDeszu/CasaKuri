@@ -174,7 +174,6 @@ if (!$product) {
                             <form action="carritoGuarda.php" method="GET">
                                 <h3>Selecciona la sucursal: </h3>
                                 <select id="inventa" name="inventa" onchange="cantidadMax()">
-                                    <option>Elige la sucursal</option>
                                     <?php
                                     // Consulta para obtener las existencias y sucursales
                                     $sucsql = "SELECT * FROM inventario i, sucursal s WHERE pro_id = " . $product_id . " AND i.suc_id = s.suc_id";
@@ -214,7 +213,30 @@ if (!$product) {
                                 </script>
 
                                 <h3>Cantidad</h3>
-                                <input type="number" id="cant" name="cant" min="0" value="0">
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="">
+                                            <input type="number" id="cant" name="cant" min="0" value="0">
+                                            <style>
+                                                input[type="number"] {
+                                                    background-color: transparent;
+                                                    width: 100px;
+                                                    border: 1px solid #ccc;
+                                                    /* Cambia el color del borde si es necesario */
+                                                    color: #000;
+                                                    /* Cambia el color del texto si es necesario */
+                                                    padding: 5px;
+                                                    /* Ajusta el relleno según tus necesidades */
+                                                    font-size: 16px;
+                                                    /* Ajusta el tamaño de la fuente según tus necesidades */
+                                                    outline: none;
+                                                    border:line;
+                                                    /* Elimina el contorno al hacer clic */
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <br>
                                 <input type="hidden" id="cliente" name="cliente" value="<?php echo $usuario_id; ?>">
