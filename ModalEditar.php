@@ -18,7 +18,7 @@
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio</label>
-                        <input type="text" id="precio" name="precio" class="form-control">
+                        <input type="number" min="1" id="precio" name="precio" class="form-control">
                     </div>
                     <!-- Categorias -->
                     <div class="mb-3">

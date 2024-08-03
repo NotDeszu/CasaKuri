@@ -76,7 +76,7 @@ $dir = "funciones/imagenes/";
                     <th scope="col">Precio</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Descripcion</th>
-                    <th scope="col">Imagen</th>
+                    <th scope="col">Estatus</th>
                     <th scope="col">Accion</th>
                 </tr>
             </thead>
@@ -91,7 +91,14 @@ $dir = "funciones/imagenes/";
                                 <td>$<?= $row_productos['pro_precio']; ?> </td>
                                 <td><?= $row_productos['cat_nombre']; ?> </td>
                                 <td><?= $row_productos['pro_decripcion']; ?> </td>
-                                <td><img src="<?= $dir . $row_productos['pro_id'] . 'jpg?n=' . time(); ?>" width="100px" alt=""></td>
+                                <td> <?php 
+                                    if($row_productos["pro_status"]==1){
+                                        echo "Activo";
+                                    }else{
+                                        echo "Inactivo";
+                                    } 
+                                    ?>
+                                    
                                 <td>
                                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
                                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#EliminarModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-trash-fill"></i></a>
@@ -105,7 +112,13 @@ $dir = "funciones/imagenes/";
                                 <td>$<?= $row_productos['pro_precio']; ?> </td>
                                 <td><?= $row_productos['cat_nombre']; ?> </td>
                                 <td><?= $row_productos['pro_decripcion']; ?> </td>
-                                <td><img src="<?= $dir . $row_productos['pro_id'] . 'jpg?n=' . time(); ?>" width="100px" alt=""></td>
+                                <td> <?php
+                                        if($row_productos["pro_status"]==0){
+                                            echo "Inactivo";
+                                        }else{
+                                            echo "Activo";
+                                        } 
+                                        ?>
                                 <td>
                                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
                                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#EliminarModal" data-bs-id="<?= $row_productos['pro_id'] ?>"> <i class="bi bi-trash-fill"></i></a>

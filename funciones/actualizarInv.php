@@ -2,11 +2,9 @@
 session_start();
 require "../BD/conexion.php";
 $id = $conn->real_escape_string($_POST['id']);
-$producto = $conn->real_escape_string($_POST['producto']);
 $inventario = $conn->real_escape_string($_POST['existencia']);
-$sucursal = $conn->real_escape_string($_POST['sucursal']);
 
-$sql = "UPDATE inventario  SET inv_existencia = '$inventario', suc_id = '$sucursal', pro_id = '$producto'  WHERE inv_id='$id'";
+$sql = "UPDATE inventario  SET inv_existencia = '$inventario' WHERE inv_id='$id'";
 
 
 if ($conn->query($sql)) {

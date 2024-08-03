@@ -20,11 +20,9 @@ require "BD/conexion.php";
 $sqlInventario = "SELECT productos.pro_id, productos.pro_Producto,inventario.inv_id, inventario.inv_existencia, sucursal.suc_nombre
 FROM inventario
 JOIN productos ON inventario.pro_id=productos.pro_id
-JOIN sucursal ON inventario.suc_id=sucursal.suc_id
-where pro_status=1";
+JOIN sucursal ON inventario.suc_id=sucursal.suc_id";
 $inventario = $conn->query($sqlInventario);
 
-//comentario, prueba de subida de archivo a github
 ?>
 
 
@@ -45,6 +43,23 @@ $inventario = $conn->query($sqlInventario);
 
     <div class="container py-3">
         <h2 class="text-center">Inventario</h2>
+
+
+
+        <?php
+        if (isset($_SESSION['msg']) && isset($_SESSION['color'])) { ?>
+            <div class="alert alert-<?= $_SESSION['color']; ?> alert-dismissible fade show" role="alert">
+                <?= $_SESSION['msg']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+            unset($_SESSION['color']);
+            unset($_SESSION['msg']);
+        }
+        ?>
+
+
+
 
         <div class="row justify-content-end">
             <div class="col-auto">
@@ -74,20 +89,45 @@ $inventario = $conn->query($sqlInventario);
             <tbody>
                 <?php
                 while ($row_inventario = $inventario->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?= $row_inventario['inv_id']; ?> </td>
-                        <td><?= $row_inventario['pro_id']; ?> </td>
-                        <td><?= $row_inventario['pro_Producto']; ?> </td>
-                        <td><?= $row_inventario['inv_existencia']; ?> </td>
-                        <td><?= $row_inventario['suc_nombre']; ?> </td>
-                        <td>
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" data-bs-id="<?= $row_inventario['inv_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
-                        </td>
-
-                    </tr>
+                    <?php
+                    if($row_inventario["inv_existencia"]>=1){ ?> 
+                            <tr>
+                                <td><?= $row_inventario['inv_id']; ?> </td>
+                                <td><?= $row_inventario['pro_id']; ?> </td>
+                                <td><?= $row_inventario['pro_Producto']; ?> </td>
+                                <td><?= $row_inventario['inv_existencia']; ?> </td>
+                                <td><?= $row_inventario['suc_nombre']; ?> </td>
+                                <td>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" 
+                                data-bs-id="<?= $row_inventario['inv_id'] ?>"
+                                data-bs-producto="<?= htmlspecialchars($row_inventario['pro_Producto']) ?>"
+                                data-bs-sucursal="<?= htmlspecialchars($row_inventario['suc_nombre']) ?>"
+                                data-bs-existencia="<?= $row_inventario['inv_existencia'] ?>">
+                                <i class="bi bi-pencil-square"></i></a>
+</a>
+<!-- the line above is where the user edits the record, but I do not know how to get the of the specifed row  -->
+                                </td>
+                            </tr>
+                    <?php   }else{ ?>
+                        <tr class ="table-danger">
+                                <td><?= $row_inventario['inv_id']; ?> </td>
+                                <td><?= $row_inventario['pro_id']; ?> </td>
+                                <td><?= $row_inventario['pro_Producto']; ?> </td>
+                                <td><?= $row_inventario['inv_existencia']; ?> </td>
+                                <td><?= $row_inventario['suc_nombre']; ?> </td>
+                                <td>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" 
+                                data-bs-id="<?= $row_inventario['inv_id'] ?>"
+                                data-bs-producto="<?= htmlspecialchars($row_inventario['pro_Producto']) ?>"
+                                data-bs-sucursal="<?= htmlspecialchars($row_inventario['suc_nombre']) ?>"
+                                data-bs-existencia="<?= $row_inventario['inv_existencia'] ?>">
+                                <i class="bi bi-pencil-square"></i></a>
+<!-- the line above is where the user edits the record, but I do not know how to get the of the specifed row  -->
+                                </td>
+                            </tr>
+                    <?php    } ?>
                 <?php }
                 ?>
-
             </tbody>
         </table>
     </div>
@@ -95,7 +135,6 @@ $inventario = $conn->query($sqlInventario);
     include("modalInve.php");
     include("EditaModalInv.php");
     ?>
-
 
     <script>
         let nuevoModal = document.getElementById('ModalInve')
@@ -131,7 +170,33 @@ $inventario = $conn->query($sqlInventario);
                 })
 
         })
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var editaModalInv = document.getElementById('EditaModalInv')
+            editaModalInv.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                var id = button.getAttribute('data-bs-id')
+                var producto = button.getAttribute('data-bs-producto')
+                var sucursal = button.getAttribute('data-bs-sucursal')
+                var existencia = button.getAttribute('data-bs-existencia')
+
+                // Update the modal's content
+                var modalTitle = editaModalInv.querySelector('.modal-title')
+                var idInput = editaModalInv.querySelector('#id')
+                var productoNombre = editaModalInv.querySelector('#productoNombre')
+                var sucursalNombre = editaModalInv.querySelector('#sucursalNombre')
+                var existenciaInput = editaModalInv.querySelector('#existencia')
+
+                modalTitle.textContent = 'Editar - Inventario: ' + producto
+                idInput.value = id
+                productoNombre.textContent = producto
+                sucursalNombre.textContent = sucursal
+                existenciaInput.value = existencia
+            })
+        })
+
     </script>
 </body>
-
 </html>

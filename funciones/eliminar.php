@@ -4,24 +4,41 @@ require "../BD/conexion.php";
 
 $id = $conn->real_escape_string($_POST['id']);
 
-$sql = "UPDATE productos SET pro_status = 0 WHERE pro_id='$id'";
+// Start transaction
+$conn->begin_transaction();
 
+try {
+    // Update productos table
+    $sql_productos = "UPDATE productos SET pro_status = 0 WHERE pro_id = ?";
+    $stmt_productos = $conn->prepare($sql_productos);
+    $stmt_productos->bind_param("i", $id);
+    $stmt_productos->execute();
 
-if ($conn->query($sql)) {
-    $dir ="imagenes";
-    $imagen = $dir .'/'.$id.'jpg';
+    // Update inventario table
+    $sql_inventario = "UPDATE inventario SET inv_existencia = 0 WHERE pro_id = ?";
+    $stmt_inventario = $conn->prepare($sql_inventario);
+    $stmt_inventario->bind_param("i", $id);
+    $stmt_inventario->execute();
+
+    // If we get here, both queries were successful
+    $conn->commit();
+
+    $dir = "imagenes";
+    $imagen = $dir . '/' . $id . '.jpg';
 
     if (file_exists($imagen)) {
         unlink($imagen);
     }
 
-    $_SESSION['color']="success";
+    $_SESSION['color'] = "success";
     $_SESSION['msg'] = "Registro eliminado";
-   
-}else{
-    $_SESSION['color']="danger";
-    $_SESSION['msg'] = "Error al eliminar Registro";
+} catch (Exception $e) {
+    // An error occurred, rollback the transaction
+    $conn->rollback();
+    $_SESSION['color'] = "danger";
+    $_SESSION['msg'] = "Error al eliminar Registro: " . $e->getMessage();
 }
 
 header('Location: ../indexAdmin.php');
+exit();
 ?>
