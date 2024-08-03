@@ -98,7 +98,14 @@ $inventario = $conn->query($sqlInventario);
                                 <td><?= $row_inventario['inv_existencia']; ?> </td>
                                 <td><?= $row_inventario['suc_nombre']; ?> </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" data-bs-id="<?= $row_inventario['inv_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" 
+                                data-bs-id="<?= $row_inventario['inv_id'] ?>"
+                                data-bs-producto="<?= htmlspecialchars($row_inventario['pro_Producto']) ?>"
+                                data-bs-sucursal="<?= htmlspecialchars($row_inventario['suc_nombre']) ?>"
+                                data-bs-existencia="<?= $row_inventario['inv_existencia'] ?>">
+                                <i class="bi bi-pencil-square"></i></a>
+</a>
+<!-- the line above is where the user edits the record, but I do not know how to get the of the specifed row  -->
                                 </td>
                             </tr>
                     <?php   }else{ ?>
@@ -109,7 +116,13 @@ $inventario = $conn->query($sqlInventario);
                                 <td><?= $row_inventario['inv_existencia']; ?> </td>
                                 <td><?= $row_inventario['suc_nombre']; ?> </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" data-bs-id="<?= $row_inventario['inv_id'] ?>"> <i class="bi bi-pencil-square"></i></a>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditaModalInv" 
+                                data-bs-id="<?= $row_inventario['inv_id'] ?>"
+                                data-bs-producto="<?= htmlspecialchars($row_inventario['pro_Producto']) ?>"
+                                data-bs-sucursal="<?= htmlspecialchars($row_inventario['suc_nombre']) ?>"
+                                data-bs-existencia="<?= $row_inventario['inv_existencia'] ?>">
+                                <i class="bi bi-pencil-square"></i></a>
+<!-- the line above is where the user edits the record, but I do not know how to get the of the specifed row  -->
                                 </td>
                             </tr>
                     <?php    } ?>
@@ -122,7 +135,6 @@ $inventario = $conn->query($sqlInventario);
     include("modalInve.php");
     include("EditaModalInv.php");
     ?>
-
 
     <script>
         let nuevoModal = document.getElementById('ModalInve')
@@ -158,7 +170,33 @@ $inventario = $conn->query($sqlInventario);
                 })
 
         })
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var editaModalInv = document.getElementById('EditaModalInv')
+            editaModalInv.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                var id = button.getAttribute('data-bs-id')
+                var producto = button.getAttribute('data-bs-producto')
+                var sucursal = button.getAttribute('data-bs-sucursal')
+                var existencia = button.getAttribute('data-bs-existencia')
+
+                // Update the modal's content
+                var modalTitle = editaModalInv.querySelector('.modal-title')
+                var idInput = editaModalInv.querySelector('#id')
+                var productoNombre = editaModalInv.querySelector('#productoNombre')
+                var sucursalNombre = editaModalInv.querySelector('#sucursalNombre')
+                var existenciaInput = editaModalInv.querySelector('#existencia')
+
+                modalTitle.textContent = 'Editar - Inventario: ' + producto
+                idInput.value = id
+                productoNombre.textContent = producto
+                sucursalNombre.textContent = sucursal
+                existenciaInput.value = existencia
+            })
+        })
+
     </script>
 </body>
-
 </html>
