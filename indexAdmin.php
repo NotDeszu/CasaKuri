@@ -20,6 +20,7 @@ categoria.cat_id = productos.cat_id order by pro_id";
 $productos = $conn->query($sqlProductos);
 
 $dir = "funciones/imagenes/";
+// merge de version fajardo y felipe
 ?>
 
 <!DOCTYPE html>
