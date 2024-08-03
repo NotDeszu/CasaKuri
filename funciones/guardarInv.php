@@ -2,6 +2,11 @@
 session_start();
 include("../BD/conexion.php");
 
+$id = $conn->real_escape_string($_POST['id']);
+$producto = $_POST['producto'];
+$sucursal = $_POST['sucursal'];
+$existencia = $_POST['existencia'];
+
 // checamos si ya existe un registro del producto en una sucursal
 $sqlCheck = "SELECT * FROM inventario WHERE pro_id = ? AND suc_id = ?";
 $stmtCheck = $conn->prepare($sqlCheck);
@@ -24,7 +29,7 @@ if ($resultCheck->num_rows > 0) {
     if ($conn->query($sql)) {
         $id = $conn->insert_id;
         $_SESSION['color']="success";
-        $_SESSION['msg']="Registro guardado";
+        $_SESSION['msg']="Nuevo Registro guardado con exito";
         
     } else {
         $_SESSION['color']="danger";
