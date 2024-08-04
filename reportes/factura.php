@@ -6,7 +6,7 @@ $ven_id = isset($_GET['ven_id']) ? intval($_GET['ven_id']) : 0;
 
 if ($ven_id > 0) {
     // Realizar la consulta para obtener los datos de la factura
-    $sqlFactura = "SELECT fac_nombre, fac_rfc, fac_domicilio, fac_fecha, rf_descripcion, cfdi_descripcion, ven_total 
+    $sqlFactura = "SELECT fac_nombre, fac_rfc, fac_domicilio, fac_fecha, rf_descripcion, cfdi_descripcion, ven_total,ven_subtotal 
                    FROM facturas
                    INNER JOIN regimen_fiscal ON regimen_fiscal.rf_id = facturas.rf_id
                    INNER JOIN cfdi_uso ON cfdi_uso.cfdi_id = facturas.cfdi_id
@@ -35,13 +35,11 @@ if ($ven_id > 0) {
     $pdf->SetXY(100, 20);
     $pdf->Cell(100, 10, 'RFC: CKU621101CH8', 1, 1);
     $pdf->SetXY(100, 30);
-    $pdf->Cell(100, 10, 'Domicilio: OLMOS No. 316 SUR, Tampico Centro,', 1, 1);
+    $pdf->Cell(100, 10, 'Domicilio:  Prol. Ezequiel Montes, Queretaro,', 1, 1);
     $pdf->SetXY(100, 40);
-    $pdf->Cell(100, 10, 'C.P. 89000, Tampico, Tamaulipas, Mexico', 1, 1);
+    $pdf->Cell(100, 10, 'C.P. 76130, QUERETARO, QUERETARO, Mexico', 1, 1);
     $pdf->SetXY(100, 50);
     $pdf->Cell(100, 10, 'Tipo de Comprobante: I - Ingreso', 1, 1);
-    $pdf->SetXY(100, 60);
-    $pdf->Cell(100, 10, 'Lugar de Expedicion: 89000', 1, 1);
     $pdf->SetXY(100, 70);
     $pdf->Cell(100, 10, 'Regimen Fiscal: 626 - Regimen Simplificado de Confianza', 1, 1);
     $pdf->Ln(10);
@@ -119,7 +117,7 @@ if ($ven_id > 0) {
         $pdf->Ln(10);
 
         // Total de la factura
-        $pdf->Cell(0, 10, 'Subtotal: ' . $venta['ven_total'], 1, 1, 'R'); // Aquí necesitas calcular el subtotal
+        $pdf->Cell(0, 10, 'Subtotal: ' . $venta['ven_subtotal'], 1, 1, 'R'); // Aquí necesitas calcular el subtotal
         $pdf->Cell(0, 10, 'Total: ' . $venta['ven_total'], 1, 1, 'R');
     } else {
         $pdf->Cell(0, 10, 'No se encontraron datos para la venta.', 1, 1);

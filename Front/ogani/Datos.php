@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../../BD/conexion.php");
-include "../../funciones/usuario.php";
+include ("../../funciones/usuario.php");
 
 // Captura de datos del formulario
 $nombre = $conn->real_escape_string($_POST['nombre']);
@@ -22,9 +22,16 @@ $cfdi_id = $result_cfdi->fetch_assoc()['cfdi_id'];
 
 // Insertar en la tabla de facturas
 $sql = "INSERT INTO facturas (fac_nombre, fac_rfc, fac_domicilio, fac_fecha, ven_id, rf_id, cfdi_id) 
-        VALUES ('$nombre', '$rfc', '$domicilio' , '$fecha', NULL, '$rf_id', '$cfdi_id')";
+        VALUES ('$nombre', '$rfc', '$domicilio', '$fecha', NULL, '$rf_id', '$cfdi_id')";
 
 if ($conn->query($sql) === TRUE) {
+    // Guardar datos en la sesión
+    $_SESSION['nombre'] = $nombre;
+    $_SESSION['rfc'] = $rfc;
+    $_SESSION['domicilio'] = $domicilio;
+    $_SESSION['regimen'] = $regimen;
+    $_SESSION['cfdi'] = $cfdi;
+
     // Redireccionar a detalles.php con un mensaje de éxito
     header("Location: detalles.php?message=datos_recibidos");
     exit();

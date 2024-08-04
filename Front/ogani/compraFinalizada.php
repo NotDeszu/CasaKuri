@@ -4,23 +4,29 @@ include("../../BD/conexion.php");
 include "../../funciones/usuario.php";
 
 // Obtener la última venta del usuario
-$sql_detalles_venta = "SELECT venta.ven_id,ven_total, detalle_venta.inv_id, deve_cantidad, pro_Producto
-                        FROM venta
-                        INNER JOIN detalle_venta ON venta.ven_id = detalle_venta.ven_id
-                        INNER JOIN inventario ON inventario.inv_id = detalle_venta.inv_id
-                        INNER JOIN productos ON inventario.pro_id = productos.pro_id
-                        WHERE venta.usu_id = $usuario_id
-                        ORDER BY venta.ven_fecha DESC
-                        LIMIT 1"; // Obtiene solo la última venta
+$sql_ultima_venta = "SELECT ven_id, ven_total 
+                     FROM venta 
+                     WHERE usu_id = $usuario_id 
+                     ORDER BY ven_fecha DESC 
+                     LIMIT 1";
+$result_ultima_venta = $conn->query($sql_ultima_venta);
 
-$result_detalles_venta = $conn->query($sql_detalles_venta);
-$ultima_venta = $result_detalles_venta->fetch_assoc();
-$ultima_venta_id = $ultima_venta['ven_id'];
-$total = $ultima_venta['ven_total'];
+if ($result_ultima_venta->num_rows > 0) {
+    $ultima_venta = $result_ultima_venta->fetch_assoc();
+    $ultima_venta_id = $ultima_venta['ven_id'];
+    $total = $ultima_venta['ven_total'];
 
-echo ("ultima venta = $ultima_venta_id");
-echo ("ultima venta = $total");
-
+    // Obtener los detalles de la última venta
+    $sql_detalles_venta = "SELECT detalle_venta.inv_id, deve_cantidad, pro_Producto
+                           FROM detalle_venta
+                           INNER JOIN inventario ON inventario.inv_id = detalle_venta.inv_id
+                           INNER JOIN productos ON inventario.pro_id = productos.pro_id
+                           WHERE detalle_venta.ven_id = $ultima_venta_id";
+    $result_detalles_venta = $conn->query($sql_detalles_venta);
+} else {
+    $result_detalles_venta = false;
+    $total = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +78,7 @@ echo ("ultima venta = $total");
                 <tbody>
                     <?php
                     // Verifica si hay resultados
-                    if ($result_detalles_venta->num_rows > 0) {
+                    if ($result_detalles_venta && $result_detalles_venta->num_rows > 0) {
                         while ($row_venta = $result_detalles_venta->fetch_assoc()) {
                     ?>
                             <tr>
@@ -89,17 +95,16 @@ echo ("ultima venta = $total");
                 <tfoot>
                     <tr>
                         <td><strong>Total</strong></td>
-                        <td><strong>$<?= $total ?></strong></td>
+                        <td><strong>$<?= htmlspecialchars($total) ?></strong></td>
                     </tr>
                 </tfoot>
             </table>
-
         </div>
 
         <!-- Botones para imprimir -->
         <div class="d-flex justify-content-center mt-4">
             <a href="../../reportes/factura.php?ven_id=<?= $ultima_venta_id ?>" class="btn btn-primary me-3">Imprime tu factura</a>
-            <a href="imprimir_recibo.php" class="btn btn-warning">Imprime tu recibo</a>
+            <a href="../../reportes/ticket.php?ven_id=<?= $ultima_venta_id ?>" class="btn btn-warning">Imprime tu recibo</a>
         </div>
 
 
@@ -123,10 +128,5 @@ echo ("ultima venta = $total");
     <script src="js/main.js"></script>
 
 </body>
-
-</html>
-
-
-
 
 </html>
