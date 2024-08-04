@@ -27,11 +27,6 @@
     margin-bottom: 30px;
 }
 
-.signup-section .btn {
-    background-color: white;
-    color: #7fad39;
-    font-weight: bold;
-}
 
 .login-section {
     background-color: white;
@@ -60,17 +55,6 @@
 .login-section .form-group input {
     border: 1px solid #7fad39;
     border-radius: 5px;
-}
-
-.login-section .btn {
-    /*background-color: #7fad39;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .logo {

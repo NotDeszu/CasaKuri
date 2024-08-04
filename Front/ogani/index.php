@@ -228,7 +228,7 @@ include "../../funciones/usuario.php";
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/lapicerofino.png">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -243,7 +243,6 @@ include "../../funciones/usuario.php";
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                 
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -258,7 +257,6 @@ include "../../funciones/usuario.php";
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                 
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -273,7 +271,6 @@ include "../../funciones/usuario.php";
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                 
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -288,7 +285,6 @@ include "../../funciones/usuario.php";
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                 
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -302,8 +298,6 @@ include "../../funciones/usuario.php";
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/lapicerapatricio.png">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -317,8 +311,6 @@ include "../../funciones/usuario.php";
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/mochila3.png">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -333,7 +325,6 @@ include "../../funciones/usuario.php";
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
                                 
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">

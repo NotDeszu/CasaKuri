@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <link rel="stylesheet" href="css/entrar.css" type="text/css">
 </head>
 <body>
     <div class="container">
@@ -23,7 +24,13 @@
                     document.getElementById("redirigir").addEventListener("click", function() {
                     window.location.href = "RegistroUsuario.html";
                     });
-</script>
+                    </script>
+                <button id="redirigir2" class="btn"> ver pagina</button>
+                <script>
+                    document.getElementById("redirigir2").addEventListener("click", function() {
+                    window.location.href = "index.php";
+                    });
+                    </script>
             </div>
             <div class="col-md-6 login-section">
                 <h3>Login</h3>

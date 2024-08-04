@@ -210,7 +210,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <ul class="product__item__pic__hover">
 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -227,7 +227,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <ul class="product__item__pic__hover">
 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -244,7 +244,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <ul class="product__item__pic__hover">
 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -261,7 +261,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <ul class="product__item__pic__hover">
 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -278,7 +278,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <ul class="product__item__pic__hover">
 
                                                 <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -295,7 +295,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <ul class="product__item__pic__hover">
 
                                                 <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -365,8 +365,6 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                             <img class="" src="<?php echo htmlspecialchars($product['pro_imagen']); ?>" alt="<?php echo htmlspecialchars($product['pro_Producto']); ?>">
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="shop-details.php?id=<?php echo $product['pro_id']; ?>"><i class="fa fa-eye"></i></a></li>
-                                                <li><a href="#" class="add-to-cart" data-pro-id="<?php echo $product['pro_id']; ?>">
-                                                        <i class="fa fa-shopping-cart"></i>
                                                     </a></li>
                                             </ul>
                                         </div>
