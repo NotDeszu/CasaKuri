@@ -197,117 +197,6 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                 </div>
                 <!-- ctf -->
                 <div class="col-lg-9 col-md-7">
-                    <div class="product__discount">
-                        <div class="section-title product__discount__title">
-                            <h2>Ultimos productos agregados</h2>
-                        </div>
-                        <div class="row">
-                            <div class="product__discount__slider owl-carousel">
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/gomapelikan.png">
-                                            <div class="product__discount__percent">new</div>
-                                            <ul class="product__item__pic__hover">
-
-                                                <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Goma</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/libretarayapelikan.png">
-                                            <div class="product__discount__percent">new</div>
-                                            <ul class="product__item__pic__hover">
-
-                                                <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Vegetables</span>
-                                            <h5><a href="#">Libreta</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/marcatextosamarillo.png">
-                                            <div class="product__discount__percent">new</div>
-                                            <ul class="product__item__pic__hover">
-
-                                                <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Marcador</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/mochila1.png">
-                                            <div class="product__discount__percent">new</div>
-                                            <ul class="product__item__pic__hover">
-
-                                                <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Mochila</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/pegamento850.png">
-                                            <div class="product__discount__percent">new</div>
-                                            <ul class="product__item__pic__hover">
-
-                                                <li><a href="#"><i class="fa fa-eye"></i></i></a></li>
-                                                
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Resistol</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg" data-setbg="img/product/discount/tijerasbarrilito.png">
-                                            <div class="product__discount__percent">new</div>
-                                            <ul class="product__item__pic__hover">
-
-                                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                                
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">Tijeras</a></h5>
-                                            <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="section-title product__discount__title">
                         <h2>Productos Papeleria Kuri</h2>
                     </div>
@@ -378,12 +267,6 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                         <?php endif; ?>
                     </div>
                     <!-- termina parte dinamica de visualizacion de productos -->
-                    <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
                 </div>
             </div>
         </div>

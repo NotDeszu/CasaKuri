@@ -20,7 +20,9 @@ require "BD/conexion.php";
 $sqlInventario = "SELECT productos.pro_id, productos.pro_Producto,inventario.inv_id, inventario.inv_existencia, sucursal.suc_nombre
 FROM inventario
 JOIN productos ON inventario.pro_id=productos.pro_id
-JOIN sucursal ON inventario.suc_id=sucursal.suc_id";
+JOIN sucursal ON inventario.suc_id=sucursal.suc_id
+order by pro_id";
+
 $inventario = $conn->query($sqlInventario);
 
 ?>

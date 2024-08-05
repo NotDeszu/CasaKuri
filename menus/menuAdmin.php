@@ -22,7 +22,7 @@
                         <a class="nav-link" href="indexInv.php">Inventario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="indexInv.php">Ventas</a>
+                        <a class="nav-link" href="indexVenta.php">Ventas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Front/ogani/controlador_cerrars2.php">Cerrar Sesion</a>
