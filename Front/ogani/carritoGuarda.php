@@ -91,7 +91,7 @@ if ($miAccion == "insCarrito"){
       
       //Actualiza t. Carrito
 
-      $sqlsubcar = "select * from carrito";
+      $sqlsubcar = "select * from carrito  where usu_id = $clClave ";
       $ressubca = mysqli_query($conn, $sqlsubcar); 
       $filasuca = mysqli_fetch_assoc($ressubca);
       $subtotalcarrito=$filasuca['car_subtotal'];

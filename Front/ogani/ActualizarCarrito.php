@@ -49,16 +49,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Actualizar el subtotal del carrito con el total de los productos (sin IVA)
+    // Calcular el total del carrito como la suma de todos los subtotales en carr_inv
+    $total_cart_result = $conn->query("SELECT SUM(carinv_subtotal) AS total_cart 
+                                        FROM carr_inv
+                                        INNER JOIN carrito ON carrito.car_id = carr_inv.car_id
+                                        WHERE carrito.usu_id = $usuario_id");
+
+    if (!$total_cart_result) {
+        die("Error al calcular el total del carrito: " . $conn->error);
+    }
+
+    $total_cart_row = $total_cart_result->fetch_assoc();
+    $car_total = $total_cart_row['total_cart'] ?? 0; // Si es NULL, asigna 0
+
+    // Actualizar el subtotal del carrito
     if ($total_subtotal_cart == 0) {
         $delete_carrito_sql = "DELETE FROM carrito WHERE usu_id = $usuario_id";
         if (!$conn->query($delete_carrito_sql)) {
             die("Error al eliminar el carrito: " . $conn->error);
         }
     } else {
-        // Actualizar el subtotal del carrito
+        // Actualizar el subtotal y total del carrito
         $carrito_update_sql = "UPDATE carrito 
-                               SET car_subtotal = $total_subtotal_cart, car_iva = ($total_subtotal_cart*0.16)
+                               SET car_subtotal = $total_subtotal_cart, car_total = $car_total
                                WHERE usu_id = $usuario_id";
         if (!$conn->query($carrito_update_sql)) {
             die("Error en la actualización del carrito: " . $conn->error);
