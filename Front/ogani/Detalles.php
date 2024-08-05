@@ -1,8 +1,9 @@
 <?php
 // Verifica si hay un mensaje en la URL
-if (isset($_GET['message']) && $_GET['message'] === 'datos_recibidos') {
-    echo '<div class="alert alert-success" role="alert">Datos recibidos.</div>';
+$datosRecibidos = isset($_GET['message']) && $_GET['message'] === 'datos_recibidos';
+if ($datosRecibidos) {
 }
+
 session_start();
 include("../../BD/conexion.php");
 include "../../funciones/usuario.php";
@@ -48,6 +49,7 @@ $detalles = $conn->query($sqlDetalles);
     <script src="https://www.paypal.com/sdk/js?client-id=AXd1CrQrWcdIbGX1wsvNP6DH-j40e3rkdebVDwCiqbMk0B_bEX6XaFjETom8mt6BD1EBArMIJEl2H_5Y&currency=MXN"></script>
 
 </head>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -161,14 +163,61 @@ $detalles = $conn->query($sqlDetalles);
                     </div>
                 <?php } ?>
 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalfactura">
                         Requiero Factura
                     </button>
                 </div>
 
-                <div id="paypal" class="d-flex justify-content-center" style="margin-top: 20px;"></div> <!-- Botones de PayPal centrados -->
+
+                <div class="mt-4">
+                    <?php if ($datosRecibidos) { ?>
+                        <div class="alert alert-success" role="alert">
+                            Datos de la factura recibidos correctamente.
+                        </div>
+                    <?php } ?>
+                    <table class="table mt-3 <?= $datosRecibidos ? '' : 'd-none'; ?>">
+                        <thead>
+                            <tr>
+                                <th>Nombre/Razón Social</th>
+                                <th>RFC</th>
+                                <th>Domicilio</th>
+                                <th>Régimen Fiscal</th>
+                                <th>Uso CFDI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?= isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : 'No disponible'; ?></td>
+                                <td><?= isset($_SESSION['rfc']) ? htmlspecialchars($_SESSION['rfc']) : 'No disponible'; ?></td>
+                                <td><?= isset($_SESSION['domicilio']) ? htmlspecialchars($_SESSION['domicilio']) : 'No disponible'; ?></td>
+                                <td><?= isset($_SESSION['regimen']) ? htmlspecialchars($_SESSION['regimen']) : 'No disponible'; ?></td>
+                                <td><?= isset($_SESSION['cfdi']) ? htmlspecialchars($_SESSION['cfdi']) : 'No disponible'; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <?php
+                if ($datosRecibidos) {
+                    unset($_SESSION['nombre']);
+                    unset($_SESSION['rfc']);
+                    unset($_SESSION['domicilio']);
+                    unset($_SESSION['regimen']);
+                    unset($_SESSION['cfdi']);
+                }
+                ?>
             </div>
+
+
+            <div class="container">
+                <div class="row col justify-content-center">
+                    <div class="col-3">
+                        <div id="paypal" class="d-flex justify-content-center" style="margin-top: 20px;"></div> <!-- Botones de PayPal centrados -->
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
@@ -178,6 +227,8 @@ $detalles = $conn->query($sqlDetalles);
         <script>
             paypal.Buttons({
                 style: {
+                    layout: 'vertical',
+                    size: 'large',
                     color: 'blue',
                     shape: 'pill',
                     label: 'pay'

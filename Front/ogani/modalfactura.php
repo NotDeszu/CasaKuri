@@ -14,8 +14,6 @@ $resultcfdi = $conn->query($sqlcfdi);
                 <h5 class="modal-title" id="modalfacturaLabel">Factura</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-
             <div class="modal-body">
                 <!-- Contenido del formulario de facturación -->
                 <form action="Datos.php" method="POST" enctype="multipart/form-data">
@@ -49,15 +47,12 @@ $resultcfdi = $conn->query($sqlcfdi);
                             <?php } ?>
                         </select>
                     </div>
-
-                    <div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    <br>
+                    <br>
+                    <div class="mb-5">
+                        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
                     </div>
                 </form>
-
-                <div class="modal-footer">
-
-                </div>
             </div>
         </div>
     </div>

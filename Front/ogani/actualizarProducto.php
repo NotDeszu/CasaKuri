@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = isset($_POST['id']) ? $conn->real_escape_string($_POST['id']) : null;
     $producto = isset($_POST['producto']) ? $conn->real_escape_string($_POST['producto']) : null;
     $precio = isset($_POST['precio']) ? $conn->real_escape_string($_POST['precio']) : null;
-    $precioIvaA = $precio + ($precio*0.16);
+    $precioIva = $precio + ($precio*0.16);
     $categoria = isset($_POST['categorias']) ? $conn->real_escape_string($_POST['categorias']) : null; // Changed from 'categoria' to 'categorias'
     $descripcion = isset($_POST['descripcion']) ? $conn->real_escape_string($_POST['descripcion']) : null;
 
@@ -47,13 +47,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare the SQL statement
     if ($imagen !== '') {
-        $sql = "UPDATE productos SET pro_Producto = ?, pro_precio = ?, pro_decripcion = ?, pro_imagen = ?, cat_id = ? WHERE pro_id = ?";
+        $sql = "UPDATE productos SET pro_Producto = ?, pro_precio = ?, pro_precioIVA = ?, pro_decripcion = ?, pro_imagen = ?, cat_id = ? WHERE pro_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sdsssi", $producto, $precioIvaA, $descripcion, $imagen, $categoria, $id);
+        $stmt->bind_param('sdsssii', $producto, $precio, $precioIva, $descripcion, $imagen, $categoria, $id);
     } else {
-        $sql = "UPDATE productos SET pro_Producto = ?, pro_precio = ?, pro_decripcion = ?, cat_id = ? WHERE pro_id = ?";
+        $sql = "UPDATE productos SET pro_Producto = ?, pro_precio = ?, pro_precioIVA =?, pro_decripcion = ?, cat_id = ? WHERE pro_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sdssi", $producto, $precioIvaA, $descripcion, $categoria, $id);
+        $stmt->bind_param('sdssii', $producto, $precio, $precioIva, $descripcion, $categoria, $id);
+
     }
 
     try {

@@ -259,7 +259,7 @@ echo "<!-- Debug: Number of products found: " . count($products) . " -->";
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a href="#"><?php echo htmlspecialchars($product['pro_Producto']); ?></a></h6>
-                                            <h5>$<?php echo number_format($product['pro_precio'], 2); ?></h5>
+                                            <h5>$<?php echo number_format($product['pro_precioIVA'], 2); ?></h5>
                                         </div>
                                     </div>
                                 </div>

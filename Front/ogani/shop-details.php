@@ -194,7 +194,7 @@ if ($formSubmitted) {
                     <div class="product__details__text">
                         <h3><?php echo htmlspecialchars($product['pro_Producto']); ?></h3>
 
-                        <div class="product__details__price">$<?php echo number_format($product['pro_precio'], 2); ?></div>
+                        <div class="product__details__price">$<?php echo number_format($product['pro_precioIVA'], 2); ?></div>
 
                         <p><?php echo htmlspecialchars($product['pro_decripcion']); ?></p>
 

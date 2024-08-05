@@ -53,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert into database
-    $sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_decripcion, pro_imagen, cat_id) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_precioIVA, pro_decripcion, pro_imagen, cat_id) VALUES (?,?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sdsss", $producto, $precioIva, $descripcion, $imagen, $categoria);
+    $stmt->bind_param('sddssi', $producto, $precio, $precioIva, $descripcion, $imagen, $categoria);
 
     if ($stmt->execute()) {
         $id = $conn->insert_id;

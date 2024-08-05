@@ -1,4 +1,3 @@
-
 <?php
 require "../BD/conexion.php";
 session_start();
@@ -18,13 +17,26 @@ if (is_array($datos)) {
     $fecha_nueva = date('Y-m-d H:i:s', strtotime($fecha));
     $email = $datos['detalles']['payer']['email_address'];
 
+    // Obtener el IVA y el subtotal del carrito del usuario
+    $sql_carrito_detalles = "SELECT car_total, car_subtotal, car_iva FROM carrito WHERE usu_id = $usuario_id";
+    $resultado_carrito_detalles = $conn->query($sql_carrito_detalles);
+
+    if ($resultado_carrito_detalles->num_rows > 0) {
+        $row_carrito_detalles = $resultado_carrito_detalles->fetch_assoc();
+        $subtotal = $row_carrito_detalles['car_subtotal'];
+        $iva = $row_carrito_detalles['car_iva'];
+    } else {
+        echo "Error: No se encontraron detalles del carrito.";
+        exit();
+    }
+
     // Iniciar transacción
     $conn->begin_transaction();
 
     try {
         // Preparar la consulta para ingresar los datos a la tabla venta
-        $sqlventa = "INSERT INTO venta (ven_id_transaccion, ven_fecha, status, ven_email, usu_id, ven_total) 
-                     VALUES ('$id_transaccion', '$fecha_nueva', '$status', '$email', $usuario_id, $monto)";
+        $sqlventa = "INSERT INTO venta (ven_id_transaccion, ven_fecha, status, ven_email, usu_id, ven_total, ven_subtotal, ven_iva) 
+                     VALUES ('$id_transaccion', '$fecha_nueva', '$status', '$email', $usuario_id, $monto, $subtotal, $iva)";
 
         // Ejecuta la consulta
         if ($conn->query($sqlventa) === TRUE) {
