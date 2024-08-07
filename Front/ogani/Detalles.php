@@ -142,7 +142,7 @@ $detalles = $conn->query($sqlDetalles);
                             <tr class="text-center">
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Subtotal</th>
+                                <th>Total x Producto</th>
                             </tr>
                         </thead>
                         <tbody>

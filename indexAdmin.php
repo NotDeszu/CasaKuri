@@ -15,7 +15,7 @@ if($_SESSION["rol_id"] != 1){
 require "BD/conexion.php";
 ?>
 <?php
-$sqlProductos = "SELECT  pro_id, pro_producto, pro_precio, pro_decripcion, pro_status, cat_nombre, productos.cat_id  from productos inner join categoria on 
+$sqlProductos = "SELECT  pro_id, pro_producto, pro_precio, pro_precioIVA, pro_decripcion, pro_status, cat_nombre, productos.cat_id  from productos inner join categoria on 
 categoria.cat_id = productos.cat_id order by pro_id";
 $productos = $conn->query($sqlProductos);
 
@@ -75,6 +75,7 @@ $dir = "funciones/imagenes/";
                     <th scope="col">ID</th>
                     <th scope="col">Producto</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">con IVA</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Estatus</th>
@@ -90,6 +91,7 @@ $dir = "funciones/imagenes/";
                                 <td><?= $row_productos['pro_id']; ?> </td>
                                 <td><?= $row_productos['pro_producto']; ?> </td>
                                 <td>$<?= $row_productos['pro_precio']; ?> </td>
+                                <td>$<?= $row_productos['pro_precioIVA']; ?> </td>
                                 <td><?= $row_productos['cat_nombre']; ?> </td>
                                 <td><?= $row_productos['pro_decripcion']; ?> </td>
                                 <td> <?php 
@@ -111,6 +113,7 @@ $dir = "funciones/imagenes/";
                                 <td><?= $row_productos['pro_id']; ?> </td>
                                 <td><?= $row_productos['pro_producto']; ?> </td>
                                 <td>$<?= $row_productos['pro_precio']; ?> </td>
+                                <td>$<?= $row_productos['pro_precioIVA']; ?> </td>
                                 <td><?= $row_productos['cat_nombre']; ?> </td>
                                 <td><?= $row_productos['pro_decripcion']; ?> </td>
                                 <td> <?php

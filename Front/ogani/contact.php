@@ -181,7 +181,7 @@ include "../../funciones/usuario.php";
     <div class="map">
         <iframe
             id="mapFrame"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d555.1091833123237!2d-100.40487310915883!3d20.616030585356004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d3452af3e572cb%3A0xa88c8cc3fcd98038!2sOffice%20Depot!5e0!3m2!1sen!2smx!4v1722409948159!5m2!1sen!2smx"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d329.9960102788225!2d-100.406162710345!3d20.65009625227548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smx!4v1723066946306!5m2!1sen!2smx"
             height="500"
             style="border:0;"
             allowfullscreen=""

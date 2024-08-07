@@ -51,8 +51,8 @@ $pdf->Image("logo.png", 160, 10, 40, 15, 'png');
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Ln(10);
 
-$header = array('V.ID', 'US_ID', 'Fecha', 'Producto', 'Sucursal', 'Inv. ID', 'No.Prod', 'Total');
-$widths = array(15, 15, 30, 40, 30, 20, 20, 20);
+$header = array('V.ID', 'US_ID', 'Fecha', 'Producto', 'Sucursal', 'Inv. ID', 'Cantidad', 'Total');
+$widths = array(15, 15, 30, 35, 40, 20, 20, 20);
 
 for($i=0; $i<count($header); $i++)
     $pdf->Cell($widths[$i], 7, $header[$i], 1, 0, 'C');

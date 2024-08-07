@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../../BD/conexion.php");
+include("../../BD/conexion.php"); 
 
 //Funcion para subir una imagen png y que aparezca en la pagina de catalogo de prod 
 function uploadImage($file) {
@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precioIva = $precio + ($precio*0.16);
     $categoria = $conn->real_escape_string($_POST['categoria']);
     $descripcion = $conn->real_escape_string($_POST['descripcion']);
+    $usu_id = $_SESSION['usu_id'];
 
     // Handle image upload
     $imagen = '';
@@ -53,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert into database
-    $sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_precioIVA, pro_decripcion, pro_imagen, cat_id) VALUES (?,?,?,?,?,?)";
+    $sql = "INSERT INTO productos (pro_Producto, pro_precio, pro_precioIVA, pro_decripcion, pro_imagen, cat_id, usu_id) VALUES (?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sddssi', $producto, $precio, $precioIva, $descripcion, $imagen, $categoria);
+    $stmt->bind_param('sddssii', $producto, $precio, $precioIva, $descripcion, $imagen, $categoria, $usu_id);
 
     if ($stmt->execute()) {
         $id = $conn->insert_id;

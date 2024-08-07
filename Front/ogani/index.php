@@ -29,6 +29,7 @@ include "../../funciones/usuario.php";
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/cosas.css" type="text/css">
+    <link rel="stylesheet" href="css/cubo.css" type="text/css">
 </head>
 
 <body>
@@ -126,16 +127,16 @@ include "../../funciones/usuario.php";
                             <span>Categorias</span>
                         </div>
                         <ul>
-                        <li><a href="#">Plumas</a></li>
-                        <li><a href="#">Cuadernos</a></li>
-                        <li><a href="#">Calculadoras</a></li>
-                        <li><a href="#">Sacapuntas</a></li>
-                        <li><a href="#">Marcadores</a></li>
-                        <li><a href="#">Carpetas</a></li>
-                        <li><a href="#">Resistol</a></li>
-                        <li><a href="#">Gomas de Borrar</a></li>
-                        <li><a href="#">Reglas</a></li>
-                        <li><a href="#">Tijeras</a></li>
+                        <li><a>Plumas</a></li>
+                        <li><a >Cuadernos</a></li>
+                        <li><a >Calculadoras</a></li>
+                        <li><a >Sacapuntas</a></li>
+                        <li><a >Marcadores</a></li>
+                        <li><a >Carpetas</a></li>
+                        <li><a >Resistol</a></li>
+                        <li><a >Gomas de Borrar</a></li>
+                        <li><a >Reglas</a></li>
+                        <li><a >Tijeras</a></li>
                         </ul>
                     </div>
                 </div>
@@ -173,27 +174,27 @@ include "../../funciones/usuario.php";
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/libreta.png">
-                            <h5><a href="#">Libreta</a></h5>
+                            <h5><a >Libretas</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/pegamentoprint.png">
-                            <h5><a href="#">Pegamento Lapiz</a></h5>
+                            <h5><a >Pegamento Lapiz</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/plumonrojob.png">
-                            <h5><a href="#">Plumon</a></h5>
+                            <h5><a >Plumones</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/tijeraspelikan.png">
-                            <h5><a href="#">Tijeras</a></h5>
+                            <h5><a >Tijeras</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="img/categories/test.png">
-                            <h5><a href="#">Resistol liquido</a></h5>
+                            <h5><a >Resistoles</a></h5>
                         </div>
                     </div>
                 </div>
@@ -205,135 +206,7 @@ include "../../funciones/usuario.php";
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Productos Presentados</h2>
-                    </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">Todos</li>
-                            <!-- <li data-filter=".oranges">PLumas</li> -->
-                            <li data-filter=".gomas">PLumas</li>
-                            <li data-filter=".fresh-meat">Libretas</li>
-                            <li data-filter=".vegetables">Escolar</li>
-                            <li data-filter=".fastfood">Oficina</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix gomas fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/lapicerofino.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Lapicero Fino</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/lapizpelikan.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Lapiz</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/coloresbarrilito.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Colores Barrilito</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/geobarrilito.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Juego geometria</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/lapizbic.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Lapiz Bic</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/lapicerapatricio.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Estuchera</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/mochila3.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">mochila</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/lapizbarrilito.png">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Lapiz Barrililito</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
     <!-- Featured Section End -->
@@ -357,10 +230,78 @@ include "../../funciones/usuario.php";
     </div>
     <!-- Banner End -->
 
+    <!-- cubo 3d -->
+    <section class="prueba">
+        <div class="containercubo">
+        <div class="cube">
+            <div style="--x:-1; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+            <div style="--x:0; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+            <div style="--x:1; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+        </div>
+        <div class="cube">
+            <div style="--x:-1; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+            <div style="--x:0; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+            <div style="--x:1; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+        </div>
+        <div class="cube">
+            <div style="--x:-1; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+            <div style="--x:0; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+            <div style="--x:1; --y:0;">
+            <span style="--i:3;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:1;"></span>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- end cubo -->
+    <section class="hero">
+        <div class="container">
+
+        </div>
+    </section>
     <!-- Footer Section Begin -->
-    <?php
-    include "../../menus/footer.html";
-    ?>
+    <section class="hero">
+        <div class="container">
+        <?php
+        include "../../menus/footer.html";
+        ?>
+        </div>
+    </section>
+    
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
