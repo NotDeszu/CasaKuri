@@ -16,14 +16,8 @@ require "BD/conexion.php";
 ?>
 <?php
 
-$sqlVentas = "SELECT venta.ven_id, usuarios.usu_nombre, usu_apellidop, venta.ven_fecha, pro_Producto, sucursal.suc_nombre, detalle_venta.inv_id, deve_cantidad, ven_total
-from venta 
-inner join detalle_venta on venta.ven_id = detalle_venta.ven_id 
-inner join inventario on inventario.inv_id = detalle_venta.inv_id 
-inner join productos on inventario.pro_id = productos.pro_id 
-inner join usuarios on usuarios.usu_id = venta.usu_id 
-inner join sucursal on sucursal.suc_id = inventario.suc_id
-order by ven_id";
+$sqlVentas = "SELECT ven_id, usu_nombre, usu_apellidop,usu_apellidom, ven_email, ven_fecha, ven_total from venta inner join usuarios on usuarios.usu_id = venta.usu_id;
+";
 
 $ventas = $conn->query($sqlVentas);
 ?>
@@ -62,12 +56,8 @@ $ventas = $conn->query($sqlVentas);
                 <tr>
                     <th scope="col">ID Venta</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
+                    <th scope="col">Apellidos</th>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Inventario ID</th>
-                    <th scope="col">Sucursal</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">No.Productos</th>
                     <th scope="col">Total</th>
                 </tr>
             </thead>
@@ -77,12 +67,8 @@ $ventas = $conn->query($sqlVentas);
                             <tr>
                                 <td><?= $row_ventas['ven_id']; ?> </td>
                                 <td><?= $row_ventas['usu_nombre']; ?> </td>
-                                <td><?= $row_ventas['usu_apellidop']; ?> </td>
+                                <td><?= $row_ventas['usu_apellidop']. ' '. $row_ventas['usu_apellidom'] ?>  </td>
                                 <td><?= $row_ventas['ven_fecha']; ?> </td>
-                                <td><?= $row_ventas['inv_id']; ?> </td>
-                                <td><?= $row_ventas['suc_nombre']; ?> </td>
-                                <td><?= $row_ventas['pro_Producto']; ?> </td>
-                                <td><?= $row_ventas['deve_cantidad']; ?> </td>
                                 <td><?= $row_ventas['ven_total']; ?> </td>
                             </tr>
                 <?php    } ?>
