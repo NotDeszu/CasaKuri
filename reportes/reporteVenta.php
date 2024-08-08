@@ -48,43 +48,37 @@ $pdf->SetFont('Arial', 'B', 24);
 $pdf->Cell(0, 10, 'Reporte de ventas', 0, 1, "C");
 $pdf->Image("logo.png", 160, 10, 40, 15, 'png');
 
-$pdf->SetFont('Arial', 'B', 10);
+$pdf->SetFont('Arial', 'B', 12);  // Aumenté el tamaño de la fuente
 $pdf->Ln(10);
 
-$header = array('V.ID', 'US_ID', 'Fecha', 'Producto', 'Sucursal', 'Inv. ID', 'Cantidad', 'Total');
-$widths = array(15, 15, 30, 35, 40, 20, 20, 20);
+$header = array('V.ID', 'Nombre', 'Apellidos', 'Fecha', 'Total');
+$widths = array(15, 40, 50, 35, 40);  // Ajusté los anchos de las columnas
 
 for($i=0; $i<count($header); $i++)
-    $pdf->Cell($widths[$i], 7, $header[$i], 1, 0, 'C');
+    $pdf->Cell($widths[$i], 8, $header[$i], 1, 0, 'C');  // Aumenté la altura de la celda
 $pdf->Ln();
 
-$pdf->SetFont('Arial', '', 9);
+$pdf->SetFont('Arial', '', 11);  // Aumenté el tamaño de la fuente
 
-$sql = "SELECT venta.ven_id, usuarios.usu_nombre, usuarios.usu_id, usu_apellidop, venta.ven_fecha, pro_Producto, sucursal.suc_nombre, detalle_venta.inv_id, deve_cantidad, ven_total
-from venta 
-inner join detalle_venta on venta.ven_id = detalle_venta.ven_id 
-inner join inventario on inventario.inv_id = detalle_venta.inv_id 
-inner join productos on inventario.pro_id = productos.pro_id 
-inner join usuarios on usuarios.usu_id = venta.usu_id 
-inner join sucursal on sucursal.suc_id = inventario.suc_id
-order by ven_id";
+$totalmax = 0;
+
+$sql = "SELECT ven_id, usu_nombre, usu_apellidop, usu_apellidom, ven_fecha, ven_total FROM venta INNER JOIN usuarios ON usuarios.usu_id = venta.usu_id";
 
 $ventas = $conn->query($sql);
 
 while ($row_ventas = $ventas->fetch_assoc()) {
-    $pdf->Cell($widths[0], 6, $row_ventas['ven_id'], 1);
-    $pdf->Cell($widths[1], 6, $row_ventas['usu_id'], 1);
-    $pdf->Cell($widths[2], 6, substr($row_ventas['ven_fecha'], 0, 16), 1);
-    
-    $pdf->SetFont('Arial', '', 8);
-    $producto = $row_ventas['pro_Producto'];
-    $pdf->Cell($widths[3], 6, $producto, 1);
-    $pdf->SetFont('Arial', '', 9);
-    
-    $pdf->Cell($widths[4], 6, $row_ventas['suc_nombre'], 1);
-    $pdf->Cell($widths[5], 6, $row_ventas['inv_id'], 1);
-    $pdf->Cell($widths[6], 6, $row_ventas['deve_cantidad'], 1);
-    $pdf->Cell($widths[7], 6, $row_ventas['ven_total'], 1, 1, 'R');
+    $pdf->Cell($widths[0], 8, $row_ventas['ven_id'], 1);
+    $pdf->Cell($widths[1], 8, $row_ventas['usu_nombre'], 1);
+    $pdf->Cell($widths[2], 8, $row_ventas['usu_apellidop'].' '.$row_ventas['usu_apellidom'], 1);
+    $pdf->Cell($widths[3], 8, $row_ventas['ven_fecha'], 1);
+    $pdf->Cell($widths[4], 8, $row_ventas['ven_total'], 1, 1, 'R');
+
+    $totalmax += $row_ventas['ven_total'];
 }
 
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Ln(10);
+$pdf->Cell(0, 10, 'Total de ventas: $' . number_format($totalmax, 2), 0, 1, 'R');
+
 $pdf->Output();
+?>

@@ -107,11 +107,11 @@ if ($ven_id > 0) {
         $pdf->Cell(0, 10, 'Subtotal: ' . number_format($venta['ven_subtotal'], 2, '.', ','), 1, 1, 'R');
         $pdf->Cell(0, 10, 'Total: ' . number_format($venta['ven_total'], 2, '.', ','), 1, 1, 'R');
     } else {
-        $pdf->Cell(0, 10, 'No se encontraron datos para la venta.', 1, 1);
+        $pdf->Cell(0, 10, 'Esta venta no se requirio facturar.', 1, 1);
     }
 
     $pdf->Output();
 } else {
-    echo "Error: No se ha proporcionado un ID de venta válido.";
+    echo "Error: Esta venta no se requirio facturar.";
 }
 ?>

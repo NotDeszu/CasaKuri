@@ -23,7 +23,7 @@ $ultima_venta_id = $ultima_venta['ven_id'];
 $total = $ultima_venta['ven_total'];
 $subtotal = $ultima_venta['ven_subtotal'];
 
-$sqlProductos = "SELECT deve_cantidad, pro_precioIVA, productos.pro_producto, pro_precioIVA * deve_cantidad as producto 
+$sqlProductos = "SELECT deve_cantidad, venta.ven_iva, pro_precioIVA, productos.pro_producto, pro_precioIVA * deve_cantidad as producto 
                  FROM detalle_venta 
                  INNER JOIN venta ON venta.ven_id = detalle_venta.ven_id
                  INNER JOIN inventario ON inventario.inv_id = detalle_venta.inv_id
@@ -57,6 +57,8 @@ $totalProductos = 0;
 $pdf->SetFont('Arial', '', 7);
 
 while ($row_productos = $res_productos->fetch_assoc()) {
+    $iva= $row_productos['ven_iva'];
+
     $cantidad = $row_productos['deve_cantidad'];
     $producto = mb_convert_encoding($row_productos['pro_producto'], 'ISO-8859-1', 'UTF-8');
     $precio = $row_productos['pro_precioIVA'];
@@ -85,8 +87,15 @@ $pdf->Ln();
 $pdf->Cell(70, 4, mb_convert_encoding('Número de artículos:  ' . $totalProductos, 'ISO-8859-1', 'UTF-8'), 0, 1, 'L');
 
 $pdf->SetFont('Arial', 'B', 8);
+// Mostrar el subtotal
 $pdf->Cell(70, 5, sprintf('Subtotal: %s  %s', MONEDA, number_format($subtotal, 2, '.', ',')), 0, 1, 'R');
+
+// Mostrar que se está aplicando un 16% de IVA
+$pdf->Cell(70, 5, sprintf('IVA (16%%): %s  %s', MONEDA, number_format($subtotal * 0.16, 2, '.', ',')), 0, 1, 'R');
+
+// Mostrar el total con IVA
 $pdf->Cell(70, 5, sprintf('Total IVA: %s  %s', MONEDA, number_format($total, 2, '.', ',')), 0, 1, 'R');
+
 
 $pdf->Ln(2);
 
