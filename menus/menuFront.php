@@ -46,7 +46,7 @@ $cantidadCarrito = $conn->query($sqlCantTotCarr);
                             ?>
                             <?php
                             if (isset($_SESSION["rol_id"])) {
-                                echo '<a href="HistoriaC.php">Ver Mis Ventas</a>';
+                                echo '<a href="HistoriaC.php">Ver Mis compras</a>';
                             }
                             ?>
                             <!-- fin -->

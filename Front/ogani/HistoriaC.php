@@ -8,9 +8,6 @@ $venta = $conn->query($sqlCompras);
 
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
 <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
@@ -39,36 +36,125 @@ $venta = $conn->query($sqlCompras);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Inicio</a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="HistoriaC.php">Ventas</a>
-                    </li>
-                    <li class="row justify-content-end align-items-center">
-                        <p class="text-white">
+    <!-- prueba de header -->
+<?php
+$sqlCantTotCarr = "select carinv_cantidad, carinv_subtotal from carr_inv inner join carrito on carrito.car_id = carr_inv.car_id where usu_id =$usuario_id";
+$cantidadCarrito = $conn->query($sqlCantTotCarr);
+?>
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <ul>
+                            <li><i class="fa fa-envelope"></i>
+                                <?php
+                                if (empty($_SESSION["usu_id"])) {
+                                    echo " ";
+                                } else {
+                                    echo $_SESSION["usu_email"];
+                                }
+                                ?>
+                            </li>
+                            <li>Envios a toda la republica Mexicana</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+
+                            <!-- Esta parte muestra un link hacia el panel administrador, si es que el usuario logeado tiene el rol de admin -->
                             <?php
-                            if (empty($_SESSION["usu_id"])) {
-                                echo " ";
+                            if (isset($_SESSION["rol_id"])) {
+                                if ($_SESSION["rol_id"] == 0) {
+                                    echo " ";
+                                } elseif ($_SESSION["rol_id"] == 1) { ?>
+                                    <a href="../../indexAdmin.php">Pagina de Administrador</a>
+                            <?php
+                                } else {
+                                    echo " ";
+                                }
                             } else {
-                                echo $_SESSION["usu_email"];
+                                echo " ";
                             }
                             ?>
-                        </p>
-                    </li>
-                </ul>
+                            <?php
+                            if (isset($_SESSION["rol_id"])) {
+                                echo '<a href="HistoriaC.php">Ver Mis compras</a>';
+                            }
+                            ?>
+                            <!-- fin -->
+                        </div>
+                        <div class="header__top__right__auth">
+                            <a href="controlador_cerrars2.php"><i class="fa fa-user"></i>
+                                <?php
+                                if (empty($_SESSION["usu_id"])) {
+                                    echo "Iniciar Sesion";
+                                } else {
+                                    echo "Cerrar Sesion";
+                                }
+                                ?>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+    <!-- Aqui termina el header top -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header__logo">
+                    <a href="./index.php"><img src="img/logo rm ck.png" alt="" width="200"></a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <nav class="header__menu">
+                    <ul>
+                        <li><a href="./index.php">Inicio</a></li>
+                        <li><a href="./shop-grid.php">Productos</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__cart">
+                    <?php
+                    // Inicializa las variables para cantidad total y subtotal
+                    $totalCantidad = 0;
+                    $subtotal = 0;
+
+                    // Itera a través de los resultados de la consulta
+                    while ($row_carritoInfo = $cantidadCarrito->fetch_assoc()) {
+                        // Suma la cantidad de cada producto al total
+                        $totalCantidad += $row_carritoInfo['carinv_cantidad'];
+                        // Suma el subtotal de cada producto al total del carrito
+                        $subtotal += $row_carritoInfo['carinv_subtotal'];
+                    }
+                    ?>
+                    <ul>
+                        <li><a href="shoping-cart.php"><i class="fa fa-shopping-cart"></i><span><?= $totalCantidad ?></span></a></li>
+                    </ul>
+                    <div class="header__cart__price">Total: <span>$<?= number_format($subtotal, 2) ?></span></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="humberger__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
+    <!-- fin prueba header -->
     <main>
         <br>
         <br>
 
         <div class="container">
-            <h4>Mis compras</h4>
+            <h1>Mis compras</h1>
             <hr>
             <?php
             while ($row_ventas = $venta->fetch_assoc()) { ?>
