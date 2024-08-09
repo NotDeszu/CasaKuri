@@ -218,7 +218,7 @@ if ($formSubmitted) {
                                 if (mysqli_num_rows($sucres) > 0) {
                                     while ($existe = mysqli_fetch_array($sucres)) { ?>
                                         <option value="<?php echo $existe["inv_id"]; ?>" data-existencia="<?php echo $existe["inv_existencia"]; ?>">
-                                            <?php echo "( " . $existe["inv_existencia"] . " ) " . $existe["suc_nombre"]; ?>
+                                            <?php echo $existe["suc_nombre"]; ?>
                                         </option>
                                     <?php }
                                 } else { ?>

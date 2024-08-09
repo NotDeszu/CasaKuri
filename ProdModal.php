@@ -12,12 +12,12 @@
                     <!-- Producto -->
                     <div class="mb-3">
                         <label for="producto" class="form-label">Producto</label>
-                        <input type="text" id="producto" name="producto" class="form-control">
+                        <input type="text" id="producto" name="producto" class="form-control" required>
                     </div>
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio</label>
-                        <input type="number" min="1" id="precio" name="precio" class="form-control">
+                        <input type="number" min="1" id="precio" name="precio" class="form-control" required>
                     </div>
                     <!-- Categorias -->
                     <div class="mb-3">

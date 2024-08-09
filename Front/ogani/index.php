@@ -231,7 +231,7 @@ include "../../funciones/usuario.php";
     <!-- Banner End -->
 
     <!-- cubo 3d -->
-    <section class="prueba">
+    <!-- <section class="prueba">
         <div class="containercubo">
         <div class="cube">
             <div style="--x:-1; --y:0;">
@@ -285,7 +285,7 @@ include "../../funciones/usuario.php";
             </div>
         </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- end cubo -->
     <section class="hero">

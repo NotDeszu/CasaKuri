@@ -8,8 +8,7 @@ if (empty($_SESSION["usu_id"])){
     exit;
 }
 
-
-$sqlUsuarioCarrito = "SELECT Productos.pro_id, pro_Producto, pro_precio,pro_precioIVA, sucursal.suc_nombre, pro_imagen, inventario.inv_existencia, carinv_cantidad, carinv_subtotal 
+$sqlUsuarioCarrito = "SELECT Productos.pro_id, pro_Producto, pro_precio,pro_precioIVA, inventario.inv_id, sucursal.suc_nombre, pro_imagen, inventario.inv_existencia, carinv_cantidad, carinv_subtotal 
                       FROM carr_inv 
                       INNER JOIN carrito ON carrito.car_id = carr_inv.car_id
                       INNER JOIN inventario ON inventario.inv_id = carr_inv.inv_id
@@ -163,7 +162,8 @@ $detalles = $conn->query($sqlDetalles);
                                             <td>
                                                 <div class="">
                                                     <div class="">
-                                                        <input type="hidden" id ="idProducto" name="pro_id[]" value="<?= htmlspecialchars($row_carrito['pro_id']); ?>">
+                                                        <input type="hidden" id="inv_id" name="inv_id[]" value="<?= htmlspecialchars($row_carrito['inv_id']); ?>">
+                                                        <input type="hidden" id="idProducto" name="pro_id[]" value="<?= htmlspecialchars($row_carrito['pro_id']); ?>">
                                                         <input class="inputN" id="cantidad" type="number" name="quantity[]" min="0" step="1" value="<?= htmlspecialchars($row_carrito['carinv_cantidad']); ?>" size="5" data-existencia="<?= htmlspecialchars($row_carrito['inv_existencia']); ?>" onchange="validateQuantity(this)">
 
                                                         <style>
@@ -190,13 +190,12 @@ $detalles = $conn->query($sqlDetalles);
                                                 function validateQuantity(input) {
                                                     var max = input.getAttribute('data-existencia');
                                                     var value = input.value;
-                                                    
+
                                                     if (parseInt(value) > parseInt(max)) {
                                                         alert('La cantidad no puede ser mayor que ' + max + '.');
                                                         input.value = max;
                                                     }
                                                 }
-
                                             </script>
                                             <td>$<?= htmlspecialchars($row_carrito['carinv_subtotal']); ?></td>
                                         </tr>

@@ -240,11 +240,6 @@ include "../../funciones/usuario.php";
                                         <li><span>Cualidades:</span> Creativo, Responsable, Lider</li>
                                     </ul>
                                     <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -268,11 +263,6 @@ include "../../funciones/usuario.php";
                                         <li><span>Cualidades:</span> Responsable, Empatico, lider</li>
                                     </ul>
                                     <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -296,11 +286,6 @@ include "../../funciones/usuario.php";
                                         <li><span>Cualidades:</span> Puntual, Resiliente, Responsable</li>
                                     </ul>
                                     <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
                                     </div>
                                 </div>
                             </div>
