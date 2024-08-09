@@ -4,6 +4,12 @@ session_start();
 include "../../funciones/usuario.php";
 $sqlCompras = " SELECT  ven_id,ven_id_transaccion, ven_fecha,status,ven_total from venta where usu_id = $usuario_id order by date(ven_fecha) DESC";
 $venta = $conn->query($sqlCompras);
+
+if (empty($_SESSION["usu_id"])){
+    header("Location: index.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>

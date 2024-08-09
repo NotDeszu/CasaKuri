@@ -41,7 +41,7 @@
                     ?>
                     <div class="form-group">
                         <label for="username"><i class="fa fa-user"></i> Usuario</label>
-                        <input name="usu_nombre" type="text" class="form-control" id="usu_nombre" placeholder="Ingresa tu usuario">
+                        <input name="usu_email" type="text" class="form-control" id="usu_email" placeholder="Ingresa tu usuario">
                     </div>
                     <div class="form-group">
                         <label for="password"><i class="fa fa-lock"></i> Enter Password</label>
