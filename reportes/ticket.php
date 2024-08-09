@@ -14,7 +14,7 @@ include("../funciones/numeCadena.php");
 $sqlUltimaventa = "SELECT venta.ven_id, ven_total, ven_subtotal
                    FROM venta
                    WHERE venta.usu_id = $usuario_id  
-                   ORDER BY venta.ven_fecha DESC
+                   ORDER BY venta.ven_id DESC
                    LIMIT 1";
 
 $res_ultimavena = $conn->query($sqlUltimaventa);
