@@ -4,7 +4,7 @@ session_start();
 if (!empty($_POST["btningresar"])) {
     if (!empty($_POST["usu_nombre"]) && !empty($_POST["usu_pass"])) {
         $usu_nombre = $_POST['usu_nombre'];
-        $usu_pass = $_POST['usu_pass'];
+        $usu_pass = md5($_POST['usu_pass']);
 
         $sql=$conn->query("select * from usuarios where usu_nombre='$usu_nombre' and usu_pass='$usu_pass'");
 

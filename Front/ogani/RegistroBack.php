@@ -24,7 +24,7 @@ $us_apellidoM = $_POST['usu_apellidom'];
 $us_telefono = $_POST['usu_telefono'];
 $us_direccion = $_POST['usu_direccion'];
 $us_email = $_POST['usu_email'];
-$us_password = $_POST['usu_pass'];
+$us_password = md5($_POST['usu_pass']);
 $us_cp = $_POST['usu_cp'];
 $id_estado = $_POST['est_id'];
 
