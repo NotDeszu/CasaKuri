@@ -3,6 +3,11 @@ include("../../BD/conexion.php");
 session_start();
 include "../../funciones/usuario.php";
 
+if (empty($_SESSION["usu_id"])){
+    header("Location: reg.html");
+    exit;
+}
+
 
 $sqlUsuarioCarrito = "SELECT Productos.pro_id, pro_Producto, pro_precio,pro_precioIVA, sucursal.suc_nombre, pro_imagen, inventario.inv_existencia, carinv_cantidad, carinv_subtotal 
                       FROM carr_inv 

@@ -3,6 +3,11 @@ include("../../BD/conexion.php");
 session_start();
 include "../../funciones/usuario.php";
 
+if (empty($_SESSION["usu_id"])){
+    header("Location: index.php");
+    exit;
+}
+
 $VentaClave = $_GET["vent_id"];
 
 $sqlCompras = " SELECT  ven_id,ven_id_transaccion, ven_fecha,status,ven_total from venta where ven_id=$VentaClave";

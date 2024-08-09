@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrate</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a1d060, #7fad39);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 300px;
+        }
+        h1 {
+            color: #7fad39;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #7fad39;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #6c9431;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrate o Inicia Sesion</h1>
+        <p>Para acceder a todas las funcionalidades de Casa Kuri</p>
+        <button id="redirigir" class="btn">Registrate</button>
+
+        <script>
+            document.getElementById("redirigir").addEventListener("click", function() {
+            window.location.href = "RegistroUsuario.html";
+            });
+        </script>
+
+        <button id="redirigir2" class="btn">Inicia Sesion</button>
+        <script>
+            document.getElementById("redirigir2").addEventListener("click", function() {
+            window.location.href = "login3.php";
+            });
+        </script>
+    </div>
+</body>
+</html>

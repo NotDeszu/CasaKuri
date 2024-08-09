@@ -7,7 +7,7 @@ include "../../funciones/usuario.php";
 $sql_ultima_venta = "SELECT ven_id, ven_total 
                      FROM venta 
                      WHERE usu_id = $usuario_id 
-                     ORDER BY ven_fecha DESC 
+                     ORDER BY ven_id DESC
                      LIMIT 1";
 $result_ultima_venta = $conn->query($sql_ultima_venta);
 
