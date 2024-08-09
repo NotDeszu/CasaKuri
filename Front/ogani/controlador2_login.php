@@ -1,10 +1,12 @@
 <?php
 session_start();
+include("../../BD/conexion.php");
+
 
 if (!empty($_POST["btningresar"])) {
-    if (!empty($_POST["usu_email"]) && !empty($_POST["usu_pass"])) {
-        $usu_email = $_POST['usu_email'];
-        $usu_pass = $_POST['usu_pass'];
+    if (!empty($_POST["usu_nombre"]) && !empty($_POST["usu_pass"])) {
+        $usu_nombre = $_POST['usu_nombre'];
+        $usu_pass = md5($_POST['usu_pass']);
 
         $sql=$conn->query("select * from usuarios where usu_email='$usu_email' and usu_pass='$usu_pass'");
 
