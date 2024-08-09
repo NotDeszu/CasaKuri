@@ -1,5 +1,7 @@
 <?php
 session_start();
+include("../../BD/conexion.php");
+
 
 if (!empty($_POST["btningresar"])) {
     if (!empty($_POST["usu_nombre"]) && !empty($_POST["usu_pass"])) {
