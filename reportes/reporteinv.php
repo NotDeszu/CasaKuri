@@ -1,6 +1,5 @@
 <?php
 include("../BD/conexion.php");
-// require("/xampp/htdocs/CRUD2/fpdf186/fpdf.php");
 require("../fpdf186/fpdf.php");
 $pdf = new FPDF(); //clase nueva de FPDF
 $pdf->AddPage();    //ORIENTACION, TAMAÑO, ROTACION

@@ -65,6 +65,12 @@ $dir = "funciones/imagenes/";
                     </button>
                 </form>
             </div>
+            <div class="col-auto">
+                <form action="reportes/grafica.php">
+                    <button type="submit" class="btn btn-warning">Grafica<i class="bi bi-file-earmark"></i>
+                    </button>
+                </form>
+            </div>
 
         </div>
 

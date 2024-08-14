@@ -15,13 +15,17 @@ if ($ven_id > 0) {
     $Factura = $conn->query($sqlFactura);
 
     // Realizar la consulta para obtener los detalles de la venta
-    $sqlProductos = "SELECT deve_cantidad, pro_precioIVA, productos.pro_producto, pro_precioIVA * deve_cantidad as producto 
+    $sqlProductos = "SELECT deve_cantidad, pro_precioIVA, productos.pro_producto, pro_precioIVA * deve_cantidad as producto, ven_iva 
                      FROM detalle_venta 
                      INNER JOIN venta ON venta.ven_id = detalle_venta.ven_id
                      INNER JOIN inventario ON inventario.inv_id = detalle_venta.inv_id
                      INNER JOIN productos ON inventario.pro_id = productos.pro_id
                      WHERE detalle_venta.ven_id = $ven_id";
     $res_productos = $conn->query($sqlProductos);
+    $ventaIVA = $res_productos->fetch_assoc();
+    $iva=$ventaIVA['ven_iva'];
+
+
 
     // Crear el PDF
     $pdf = new FPDF();
@@ -105,6 +109,7 @@ if ($ven_id > 0) {
 
         // Total de la factura
         $pdf->Cell(0, 10, 'Subtotal: ' . number_format($venta['ven_subtotal'], 2, '.', ','), 1, 1, 'R');
+        $pdf->Cell(0,10, 'Iva: ' . number_format($iva,2, '.', ','),1 ,1 ,'R');
         $pdf->Cell(0, 10, 'Total: ' . number_format($venta['ven_total'], 2, '.', ','), 1, 1, 'R');
     } else {
         $pdf->Cell(0, 10, 'Esta venta no se requirio facturar.', 1, 1);

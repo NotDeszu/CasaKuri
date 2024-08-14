@@ -1,7 +1,6 @@
 
 <?php
 include("../BD/conexion.php");
-// require("/xampp/htdocs/CRUD2/fpdf186/fpdf.php");
 require("../fpdf186/fpdf.php");
 $pdf = new FPDF(); //clase nueva de FPDF
 $pdf->AddPage();    //ORIENTACION, TAMAÑO, ROTACION
@@ -32,7 +31,5 @@ while ($row_productos = $productos->fetch_assoc()) {
     $pdf->SetX(170);
     $pdf->Cell(10, 10, $row_productos['cat_nombre']);
 }
-
-
 
 $pdf->Output(); // Salida de PDF
